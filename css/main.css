@@ -195,3 +195,17 @@ table tr td{
 }
 table tr th :first-child,table tr td :first-child{margin:0}
 table tr th :last-child,table tr td :last-child{margin:0}
+
+.image-txt-container {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	padding-bottom:20px;
+	padding-top: 10px;
+}
+
+.image-txt-container img {
+	  width: 500px;
+	  height: 500px;
+	  padding-right: 10px;
+  }
