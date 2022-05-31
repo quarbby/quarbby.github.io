@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lynnette H. X. Ng</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="keywords" content="blog, accent, , Quarbby, jekyll"> -->
+    <meta name="author" content="">
+
+    <meta name="description" content="">
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/main.css">
+    
+</head>
+<body>
+    <div class="wrapper">
+      <div class="navbar container">
+        <a id="author-name" class="alignable pull-left" href=".">Lynnette Hui Xian <u>NG</u></a> 
+        <ul class="alignable pull-right navbar-ul">
+
+          <li class="alignable pull-right nav-list"><a class="cool-link" href="../blog.html">Blog</a>
+          </li>
+                        
+          <li class="alignable pull-right nav-list"><a class="cool-link" href="../pub.html">Publications</a>
+          </li>
+                  
+          <!--<li class="alignable pull-right nav-list"><a class="cool-link" href="research">Research</a>
+          </li>-->
+            
+        </ul>
+    </div>
+        <div style="clear:both"></div>
+        <hr>
+        
+        <div class="container content">
+            <h2 id="blog">Fall and Winter 2021</h2>
+
+          <h3>Fall and Winter 2021</h3>
+          <strong>Semester 2: Fall and Winter 2021</strong><br>
+          <p>
+            Semester 2 has been slightly easier on me, having settled into Pittsburgh and school life a little. We were starting to have in-person lessons again and it was amazing seeing my advisor, professors and labmates! 
+            It wasn't all rosy though; many in-person plans were distrupted because someone had contracted COVID or someone was a close contact.
+            That said, I'm loving the pandemic for one thing: we've figured out virtual talks, meetings and conferences, which means I can attend a lot of talks without needing to fly over! 
+          </p>
+
+          <p>
+            Here's some of the work that I've accomplished this semester. 
+          </p>
+
+          <u>Stabilizing a supervised bot detection algorithm: How much data is needed for consistent predictions?</u>
+          <p>
+            <img src="../img/botstability.png" style="width:500px; height:300px;"><br>
+            Many social media bot detectors have been developed, and they all rely on a threshold. If a user agent has a bot-probability score above the threshold, it is considered a bot; if below, it is considered a non-bot. But what threshold should we use? How much data do we need? <br> 
+            A stable bot score is one that changes minimally across an investigation time frame, thus providing reliable characterization of an account - or agent’s - bot classification. A stable bot detection algorithm is one that consistently characterizes an agent as a bot or non-bot. <br>
+            We performed a systematic evaluation of the BotHunter algorithm across increasing number of days and increasing number of tweets. For this algorithm, to achieve bot prediction algorithm stability, a recommended threshold level is 0.70. A recommended collection size is at least 10 days of tweets or 20 tweets. <br>
+            Give it a read <a href="https://www.sciencedirect.com/science/article/pii/S2468696422000027" target="_blank">here</a> and hopefully you'll learn more about stabalizing threshold-based algorithms.
+          </p>
+
+          <u>Will You Dance To The Challenge? Predicting User Participation of TikTok Challenges</u>
+          <p>
+            <img src="../img/tiktok.png" style="width:500px; height:300px;"> <br>
+
+            Because we are spending too much time on the new amazing platform TikTok, we did a study on hashtag challenges and what makes them viral. We developed a deep learning model that maps out user's past videos and challenges past videos to predict whether a user will participate in the challenge. Read about this fun piece on <a href="https://dl.acm.org/doi/10.1145/3487351.3488276" target="_blank"><strong>social contagion and TikTok challenges</strong></a> which was accepted in ASONAM. <br> 
+            Many thanks to <a href="http://twitter.com/SRoyLee" target="_blank">Roy Lee</a> who kept this flame alive and kept on improving the work. It finally paid off and got accepted! <br> 
+            We also got a <a href="https://www.inputmag.com/culture/tiktok-challenges-virality-study-renegade-charli-damelio-bored-in-the-house" target="_blank">magazine feature</a> for this piece!
+          </p>
+
+          <u>How does fake news spread? Understanding pathways of disinformation spread through APIs</u>
+          <p>
+            <img src="../img/pathways.jpg" style="width:500px; height:300px;"> <br>
+            A piece where we mapped out a <strong>framework for pathways of disinformation</strong> with <a href="http://twitter.com/ArazTH" target="_blank">Araz Taeihagh</a> finally came out in <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/poi3.268" target="_blank">Policy and Internet</a>.<br> 
+            We did a systematic literature review on APIs (application programming interfaces) that social media platforms provide and the spread of disinformation. Then we examined open-source code repositories to understand the usage patterns of these APIs. 
+            We categorized the use of APIs into a four stage framework that characterises the spread of disinformation on social media platforms. The stages are: Network Creation, Profiling, Content Generation and Information Dissemination. 
+            We showed how this framework can be applied in the 2016 US Presidential Election, where Russia's Internet Research Agency attempted to sow discord among the voting population. 
+            Finally, we provided policy recommendations for regulation of social media APIs for social media platforms, governments and organizations.
+            This was a great characterization and survey exercise and I hope it will elucidate mechanisms of information spreading on social media platforms.
+          </p>
+          
+          <u>CIGLI: Conditional Image Generation from Language & Image</u>
+          <p>
+            <img src="../img/imagegen.png" style="width:500px; height:250px;"><br>
+            As part of class project, we did came up with <strong>CIGLI: Conditional Image Generation from Language & Image</strong>, which was accepted at 
+            <a href="https://openaccess.thecvf.com/content/ICCV2021W/CLVL/papers/Lu_CIGLI_Conditional_Image_Generation_From_Language__Image_ICCVW_2021_paper.pdf" target="_blank">ICCV Workshop</a> on closing the loop in vision and image.<br> 
+            In this paper, we designed a dataset based off the <a href="https://lil.nlp.cornell.edu/nlvr/">NLVR</a> image-language task. 
+            We construct a task where a vision-language model is presented with one image and a text description describing two images. The model has to generate the second image to fulfil the description, but solely analyzing the description is insufficient to generate an image; the model has to look at both the first image and the text description. To do this, we propose an image-language fusion model and evaluated it through quantitative (automatic) and qualitative (human) evaluations. The code and dataset is available <a href="https://github.com/vincentlux/CIGLI">here</a>, do take a look and come up with new ideas!  <br>
+            Co-authors: <a href="http://twitter.com/vincentlu073" target="_blank">Xiaopeng Lu</a>, <a href="http://twitter.com/FernJared" target="_blank">Jared Fernandez</a>, <a href="http://twitter.com/_Hao_Zhu" target="_blank">Hao Zhu</a>
+          </p>
+
+          <u>Using Graph-Aware Reinforcement Learning to Identify Winning Strategies in Diplomacy Games</u>
+          <p>
+            Along with all these came an unexpected acceptance at AAAI Student Poster abstract on <a href="https://arxiv.org/pdf/2112.15331.pdf" target="_blank"><strong>Graph-Aware Reinforcement Learning to Identify Winning Strategies in Diplomacy Games</strong></a>. This paper made it to the finalist, which is the top 10% of the papers. So proud of the first author, <a href="http://twitter.com/hansinahuja" target="_blank">Hansin Ahuja</a>, an undergraduate at IIT. Also thanks to mentor <a href="http://twitter.com/feedkoko">Kokil Jaidka</a> for keeping up with this! 
+          </p>
+
+</div>
+        
+</div>
+    
+</body>
