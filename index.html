@@ -1,218 +1,2127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <title>Lynnette H. X. Ng</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <meta name="keywords" content="blog, accent, , Quarbby, jekyll"> -->
-    <meta name="author" content="lynnette hui xian ng, lynnette ng">
-
-    <meta name="description" content="social media, bot detection, computational social science, network analysis, information operations">
-    <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="./css/main.css">
-    
-</head>
-<!-- Google tag (gtag.js) -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The LAN Shop — Lynnette Hui Xian Ng</title>
+<meta name="description" content="Language, Agents, Networks. The research of Lynnette Hui Xian Ng: bot detection, coordination, influence operations and multi-agent social systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,200;1,6..72,300;1,6..72,400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL7Y0S9W4R"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-FL7Y0S9W4R');
 </script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230C1116'/><g fill='%236BB8FF'><rect x='6' y='8' width='2' height='6'/><rect x='13' y='8' width='2' height='6'/><rect x='20' y='8' width='2' height='6'/></g><g fill='%23F2B441'><rect x='9' y='18' width='2' height='6'/><rect x='17' y='18' width='2' height='6'/><rect x='24' y='18' width='2' height='6'/></g></svg>">
+
+<style>
+/* Tokens */
+
+:root{
+  --ink:#0C1116; --ink-2:#121A22; --ink-3:#16202A;
+  --line:#23303C; --line-soft:#1A242E;
+  --paper:#E6EDF2; --muted:#8399A9; --dim:#5B6E7D;
+  --human:#F2B441; --agent:#6BB8FF;
+  --agent-rgb:107,184,255; --human-rgb:242,180,65;
+  --dim-rgb:131,153,169;  --paper-rgb:230,237,242;
+  --mute-rgb:160,178,192; --deep-rgb:78,94,107;
+  --vig:#000; --vig-a:0.55;
+  --plot-line:#18242F; --plot-node:#131C25; --plot-edge:#2C3E4E;
+  --plot-ring:#33475A; --plot-stroke:#4A6275; --plot-grid:#1B2733;
+  --shade:var(--shade); --deck:var(--deck); --soft:var(--soft);
+  --serif:"Newsreader",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --pixel:"Silkscreen","JetBrains Mono",monospace;
+  --gut:clamp(1.25rem,4vw,3.5rem);
+  --max:1240px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* Light theme — the default. Dark is kept and switchable. */
+:root[data-theme="light"]{
+  --ink:#F5F7F8; --ink-2:#FFFFFF; --ink-3:#EBEFF3;
+  --line:#C3CFD9; --line-soft:#DCE3E9;
+  --paper:#0D151D; --muted:#42535F; --dim:#5A6B78;
+  --human:#9A5B00; --agent:#0B5FBF;
+  --agent-rgb:11,95,191; --human-rgb:154,91,0;
+  --dim-rgb:106,122,134; --paper-rgb:13,21,29;
+  --mute-rgb:126,142,155; --deep-rgb:176,190,201;
+  --vig:#5A6B78; --vig-a:0.16;
+  --plot-line:#D6DEE5; --plot-node:#FFFFFF; --plot-edge:#B4C2CD;
+  --plot-ring:#A9B8C4; --plot-stroke:#7B8B99; --plot-grid:#E2E8ED;
+  --shade:#66757F; --deck:#31404C; --soft:#3A4954;
+}
+:root[data-theme="light"] body{ background:var(--ink); }
+
+/* Light skin: the dark "glass" surfaces get a paper equivalent. */
+:root[data-theme="light"] .bar{ background:rgba(255,255,255,0.90); }
+:root[data-theme="light"] .plot{
+  background:linear-gradient(180deg,rgba(var(--agent-rgb),0.05),transparent 55%),var(--ink-2);
+}
+:root[data-theme="light"] .hud{
+  background:rgba(255,255,255,0.94);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.9), 0 -14px 30px rgba(20,35,50,0.10);
+}
+:root[data-theme="light"] .bay,
+:root[data-theme="light"] .tab,
+:root[data-theme="light"] .unit,
+:root[data-theme="light"] .theatre{
+  background:var(--ink-2);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 2px rgba(20,35,50,0.06);
+}
+:root[data-theme="light"] .unit:hover{ background:var(--ink-3); }
+:root[data-theme="light"] .keys kbd{
+  background:var(--ink-3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 0 rgba(20,35,50,0.10);
+}
+:root[data-theme="light"] .screen{
+  background:var(--ink-2);
+  box-shadow:inset 0 0 0 1px var(--line-soft);
+}
+/* no CRT scanlines or vignette on paper — they only read as dirt */
+:root[data-theme="light"] .screen__body::after{ background:none; }
+
+/* Theme switch */
+
+.themeBtn{
+  font-family:var(--mono); font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--dim); background:transparent; border:1px solid var(--line);
+  border-radius:2px; padding:0.34rem 0.6rem; cursor:pointer; white-space:nowrap;
+  transition:color .2s var(--ease), border-color .2s var(--ease);
+}
+.themeBtn:hover{ color:var(--paper); border-color:var(--agent); }
+@media (max-width:520px){ .themeBtn{ display:none; } }
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; scroll-padding-top:4rem; }
+body{
+  margin:0; background:var(--ink); color:var(--paper);
+  font-family:var(--serif); font-weight:300;
+  font-size:clamp(1.06rem,1rem + 0.3vw,1.22rem); line-height:1.68;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+a{ color:inherit; }
+::selection{ background:var(--human); color:#0C1116; }
+:focus-visible{ outline:2px solid var(--agent); outline-offset:3px; border-radius:1px; }
+
+.wrap{ max-width:var(--max); margin-inline:auto; padding-inline:var(--gut); }
+
+.label{
+  font-family:var(--mono); font-size:0.78rem; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--dim);
+}
+
+/* ── status bar ──────────────────────────── */
+.bar{
+  position:sticky; top:0; z-index:60;
+  background:rgba(12,17,22,0.88);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line-soft);
+}
+.bar__progress{
+  position:absolute; left:0; bottom:-1px; height:1px; width:0%;
+  background:linear-gradient(90deg,var(--agent),var(--human));
+  transition:width .12s linear;
+}
+.bar__in{
+  max-width:var(--max); margin-inline:auto;
+  padding:0.7rem var(--gut);
+  display:flex; align-items:center; gap:1.5rem;
+  font-family:var(--mono); font-size:0.78rem;
+  letter-spacing:0.14em; text-transform:uppercase;
+}
+.bar__mark{ color:var(--paper); letter-spacing:0.22em; font-weight:500; text-decoration:none; transition:color .2s var(--ease); }
+.bar__mark:hover{ color:var(--human); }
+.bar__nav{ margin-left:auto; display:flex; gap:1.3rem; }
+.bar__nav a{ color:var(--dim); text-decoration:none; transition:color .2s var(--ease); position:relative; }
+.bar__nav a::after{
+  content:""; position:absolute; left:0; right:100%; bottom:-4px; height:1px;
+  background:var(--human); transition:right .28s var(--ease);
+}
+.bar__nav a:hover{ color:var(--paper); }
+.bar__nav a:hover::after,
+.bar__nav a.is-here::after{ right:0; }
+.bar__nav a.is-here{ color:var(--paper); }
+.bar__clock{ color:var(--dim); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.bar__clock i{ font-style:normal; color:var(--human); animation:blip 3.4s var(--ease) infinite; }
+@keyframes blip{ 0%,88%,100%{opacity:1} 92%{opacity:.15} }
+@media (max-width:980px){
+  .bar__nav{ display:none; }
+  .bar__in{ justify-content:space-between; }
+  .bar__clock{ margin-left:auto; }
+}
+
+/* ── reveal on scroll ────────────────────── */
+.rv{ opacity:0; transform:translateY(18px); }
+.rv.in{
+  opacity:1; transform:none;
+  transition:opacity .75s var(--ease), transform .75s var(--ease);
+}
+.rv.in.d1{ transition-delay:.07s } .rv.in.d2{ transition-delay:.14s }
+.rv.in.d3{ transition-delay:.21s } .rv.in.d4{ transition-delay:.28s }
+
+/* ── hero ────────────────────────────────── */
+.hero{ padding-top:clamp(3rem,7vw,5.5rem); }
+.hero__eyebrow{ margin-bottom:clamp(1.4rem,4vw,2.4rem); }
+.hero__eyebrow span{
+  font-family:var(--mono); font-size:0.78rem; letter-spacing:0.3em;
+  text-transform:uppercase; color:var(--paper);
+}
+.hero__eyebrow em{ font-style:normal; color:var(--agent); }
+
+.hero h1{
+  font-weight:200; font-size:clamp(3rem,11vw,8.2rem);
+  line-height:0.92; letter-spacing:-0.035em; margin:0;
+}
+.hero h1 span{ display:block; overflow:hidden; }
+.hero h1 b{
+  display:block; font-weight:inherit;
+  transform:translateY(102%);
+  transition:transform 1s var(--ease);
+}
+.hero h1 .family b{ font-weight:400; font-style:italic; padding-left:0.06em; transition-delay:.12s; }
+.is-lit h1 b{ transform:none; }
+
+
+/* hero lockup: the shop is the name on the door; the person signs underneath */
+
+/* The lockup must not clip its own serifs: overflow:hidden drives the reveal,
+   so the box is padded outward and pulled back with a matching negative margin. */
+.hero__lockup{ font-size:clamp(2.5rem,8.8vw,6.6rem); line-height:1.02; letter-spacing:-0.02em; }
+.hero__lockup .shop{
+  padding:0.14em 0.08em 0.1em; margin:-0.14em -0.08em -0.1em;
+}
+.hero__lockup .shop b{ font-weight:200; }
+.hero__lockup .shop em{
+  font-style:normal; font-weight:400; color:var(--agent);
+  transition:color .3s var(--ease);
+}
+.hero__lockup .shop:hover em{ color:var(--human); }
+
+/* the name explains itself, one initial at a time */
+.hero__rail{
+  margin:clamp(0.7rem,2vw,1.15rem) 0 0;
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:0.3rem 1.5rem;
+  font-family:var(--mono); font-size:0.82rem; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--dim);
+}
+.hero__rail .rail__w{ position:relative; padding-left:0.1em; transition:color .28s var(--ease); }
+.hero__rail .rail__w b{
+  font-weight:500; color:var(--agent); transition:color .28s var(--ease);
+}
+.hero__rail .rail__w::after{
+  content:""; position:absolute; left:0; right:100%; bottom:-0.42em; height:1px;
+  background:var(--agent); transition:right .42s var(--ease);
+}
+.hero__rail.is-say .rail__w{ color:var(--muted); }
+.hero__rail.is-say .rail__w b{ color:var(--human); }
+.hero__rail.is-say .rail__w::after{ right:0; background:var(--human); }
+.hero__rail.is-say .rail__w[data-i="1"]::after{ transition-delay:.09s; }
+.hero__rail.is-say .rail__w[data-i="2"]::after{ transition-delay:.18s; }
+.hero__by{
+  margin:clamp(0.9rem,2.4vw,1.5rem) 0 0;
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:0.5rem 0.9rem;
+}
+.hero__by-k{
+  font-family:var(--mono); font-size:0.76rem; letter-spacing:0.24em;
+  text-transform:uppercase; color:var(--dim);
+}
+.hero__by-n{
+  font-size:clamp(1.35rem,1.1rem + 1.1vw,2.1rem);
+  font-weight:300; font-style:italic; letter-spacing:-0.01em; color:var(--paper);
+}
+.hero__lower{ margin-top:clamp(1.6rem,4vw,2.6rem); display:grid; gap:2rem; }
+@media (min-width:980px){
+  .hero__lower{ grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); gap:clamp(2rem,5vw,4.5rem); }
+}
+.hero__deck{
+  margin:0; max-width:46ch;
+  font-size:clamp(1.1rem,1rem + 0.5vw,1.42rem); line-height:1.5; color:var(--deck);
+}
+.hero__deck strong{ font-weight:400; color:var(--paper); }
+.hero__meta{ margin-top:clamp(1.4rem,3vw,2rem); display:flex; flex-wrap:wrap; gap:0.35rem 1.4rem; }
+.hero__meta span{ font-family:var(--mono); font-size:0.8rem; letter-spacing:0.1em; color:var(--dim); }
+
+.door{ border-top:1px solid var(--line); padding-top:1rem; max-width:34ch; }
+.door p{ margin:0.7rem 0 1.1rem; font-size:1rem; line-height:1.5; color:var(--soft); }
+.door a{
+  font-family:var(--mono); font-size:0.86rem; text-decoration:none; color:var(--paper);
+  border-bottom:1px solid var(--line); padding-bottom:3px;
+  transition:color .2s var(--ease),border-color .2s var(--ease);
+}
+.door a:hover{ color:var(--human); border-color:var(--human); }
+
+/* ── instrument ──────────────────────────── */
+.instr{ margin-top:clamp(2.6rem,6vw,4.6rem); border-top:1px solid var(--line); padding-top:1.1rem; }
+.instr__head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:0.6rem 1.5rem; margin-bottom:1.1rem; }
+.instr__title{
+  font-family:var(--mono); font-size:0.78rem; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--paper);
+}
+.instr__sub{ font-size:1.04rem; color:var(--muted); font-style:italic; margin-right:auto; }
+
+.plot{
+  position:relative; border:1px solid var(--line-soft); border-radius:2px;
+  background:linear-gradient(180deg,rgba(107,184,255,0.035),transparent 55%),var(--ink-2);
+  padding:0.9rem 0.9rem 0.4rem;
+}
+.plot canvas{ display:block; width:100%; height:clamp(230px,34vh,340px); }
+.plot__axis{
+  display:flex; justify-content:space-between; padding-top:0.55rem;
+  font-family:var(--mono); font-size:0.74rem; letter-spacing:0.12em; color:var(--shade);
+}
+
+.readout{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:1.6rem 2.6rem; margin-top:1.2rem; }
+.metric{ min-width:9rem; }
+.metric__k{
+  display:block; margin-bottom:0.25rem; font-family:var(--mono); font-size:0.74rem;
+  letter-spacing:0.16em; text-transform:uppercase; color:var(--dim);
+}
+.metric__v{
+  font-family:var(--mono); font-size:1.5rem; font-weight:300;
+  font-variant-numeric:tabular-nums; letter-spacing:-0.02em; color:var(--paper); line-height:1;
+}
+.metric--hidden{ opacity:0; transform:translateY(5px); transition:opacity .5s var(--ease),transform .5s var(--ease); }
+.metric--hidden.is-on{ opacity:1; transform:none; }
+.metric--flag .metric__v{ color:var(--agent); }
+
+.btn{
+  font-family:var(--mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--paper); background:transparent; border:1px solid var(--line); border-radius:2px;
+  padding:0.7rem 1.1rem; cursor:pointer;
+  transition:border-color .2s var(--ease),color .2s var(--ease),background .2s var(--ease);
+}
+.btn:hover{ border-color:var(--agent); color:var(--agent); }
+.btn[aria-pressed="true"]{ border-color:var(--agent); color:var(--ink); background:var(--agent); }
+.btn--push{ margin-left:auto; }
+@media (max-width:640px){ .btn--push{ margin-left:0; width:100%; } }
+
+.instr__note{ margin:1.6rem 0 0; max-width:64ch; font-size:1.04rem; color:var(--muted); }
+.instr__note a{ color:var(--paper); text-decoration-color:var(--line); text-underline-offset:3px; }
+.instr__note a:hover{ text-decoration-color:var(--agent); }
+
+/* ── sections ────────────────────────────── */
+.section{ padding-block:clamp(4rem,10vw,8rem); }
+.section--tight{ padding-block:clamp(3rem,7vw,5rem); }
+.section__head{
+  display:grid; gap:0.9rem; border-top:1px solid var(--line);
+  padding-top:1.1rem; margin-bottom:clamp(2.2rem,5vw,3.6rem);
+}
+@media (min-width:900px){ .section__head{ grid-template-columns:14rem minmax(0,1fr); gap:2.5rem; } }
+.section__title{
+  margin:0; max-width:31ch; font-size:clamp(1.5rem,1.2rem + 1.4vw,2.3rem);
+  font-weight:300; line-height:1.15; letter-spacing:-0.02em;
+}
+.section__title em{ font-style:italic; color:var(--muted); }
+
+/* ── creed ───────────────────────────────── */
+.creed{ border-top:1px solid var(--line); padding-top:clamp(2rem,5vw,3rem); }
+.creed p{
+  margin:0; max-width:19ch; font-size:clamp(1.5rem,1.05rem + 2.1vw,3.1rem);
+  font-weight:200; line-height:1.24; letter-spacing:-0.025em;
+}
+.creed p .a{ color:var(--agent); font-style:italic; }
+.creed p .h{ color:var(--human); font-style:italic; }
+.creed__foot{ margin-top:2rem; max-width:42ch; color:var(--muted); font-size:1rem; }
+
+/* ── counters strip ──────────────────────── */
+.stats{
+  display:grid; gap:1.5rem 2rem; margin-top:clamp(2.5rem,6vw,4rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr));
+  border-top:1px solid var(--line); padding-top:1.6rem;
+}
+.stat__v{
+  font-family:var(--mono); font-size:clamp(1.8rem,1.4rem + 1.4vw,2.6rem); font-weight:300;
+  letter-spacing:-0.03em; line-height:1; color:var(--paper); font-variant-numeric:tabular-nums;
+}
+.stat__k{ display:block; margin-top:0.55rem; max-width:18ch; font-size:0.92rem; color:var(--muted); line-height:1.4; }
+
+/* ── screens (station terminals) ─────────── */
+.station{
+  border-top:1px solid var(--line-soft); padding-block:clamp(2.4rem,5vw,3.6rem);
+  display:grid; gap:1.8rem;
+}
+.station:first-of-type{ border-top:1px solid var(--line); }
+@media (min-width:1000px){ .station{ grid-template-columns:14rem minmax(0,1fr); gap:2.5rem; } }
+
+.station__pc{
+  display:block; margin-bottom:0.6rem; font-family:var(--mono);
+  font-size:0.78rem; letter-spacing:0.2em; color:var(--agent);
+}
+.station__name{
+  margin:0 0 0.5rem; font-family:var(--mono); font-size:1.35rem; font-weight:500;
+  letter-spacing:-0.01em; color:var(--paper); line-height:1.1;
+}
+.station__name .lc{ text-transform:lowercase; color:var(--muted); font-weight:300; }
+.station__expand{ max-width:22ch; font-size:0.9rem; color:var(--dim); line-height:1.45; }
+
+.station__qs{ margin:0 0 1.8rem; padding:0; list-style:none; max-width:52ch; }
+.station__qs li{
+  position:relative; margin-bottom:0.35rem; padding-left:1.2rem;
+  font-size:clamp(1.02rem,0.98rem + 0.35vw,1.24rem); font-style:italic;
+  color:var(--soft); line-height:1.45;
+}
+.station__qs li::before{
+  content:""; position:absolute; left:0; top:0.72em; width:0.5rem; height:1px; background:var(--line);
+}
+
+.screen{
+  position:relative; margin-bottom:1.8rem;
+  border:1px solid var(--line-soft); border-radius:2px; background:var(--ink-2);
+  overflow:hidden;
+}
+.screen__bar{
+  display:flex; align-items:center; gap:0.8rem;
+  padding:0.6rem 0.85rem; border-bottom:1px solid var(--line-soft);
+  font-family:var(--mono); font-size:0.74rem; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--dim);
+}
+.screen__bar b{ color:var(--muted); font-weight:400; }
+.screen__live{ margin-left:auto; display:flex; align-items:center; gap:0.45rem; color:var(--dim); }
+.screen__live::before{
+  content:""; width:5px; height:5px; border-radius:50%; background:var(--agent);
+  animation:pulse 2s var(--ease) infinite;
+}
+@keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.25} }
+.screen__body{ padding:0.85rem; }
+.screen canvas{ display:block; width:100%; height:clamp(190px,26vh,250px); }
+.screen__foot{
+  display:flex; flex-wrap:wrap; align-items:center; gap:0.8rem 1.6rem;
+  padding:0.7rem 0.85rem; border-top:1px solid var(--line-soft);
+  font-family:var(--mono); font-size:0.76rem; letter-spacing:0.1em; color:var(--dim);
+}
+.screen__foot .v{ color:var(--paper); font-variant-numeric:tabular-nums; }
+.screen__foot .btn{ margin-left:auto; padding:0.5rem 0.8rem; font-size:0.74rem; }
+@media (max-width:640px){ .screen__foot .btn{ margin-left:0; width:100%; } }
+
+/* classifier rows (PC-01) */
+.feed{ display:grid; gap:0.35rem; }
+.feed__row{
+  display:grid; grid-template-columns:8.5rem minmax(0,1fr) 4.6rem;
+  align-items:center; gap:0.8rem;
+  padding:0.4rem 0; font-family:var(--mono); font-size:0.78rem;
+  opacity:0; transform:translateX(-8px);
+  animation:slideIn .5s var(--ease) forwards;
+}
+@keyframes slideIn{ to{ opacity:1; transform:none; } }
+.feed__id{ color:var(--muted); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.feed__meter{ position:relative; height:6px; background:var(--ink-3); border-radius:1px; overflow:hidden; }
+.feed__meter i{
+  position:absolute; inset:0 auto 0 0; display:block; width:0%;
+  transition:width .8s var(--ease);
+}
+.feed__meter i.h{ background:var(--human); }
+.feed__meter i.b{ background:var(--agent); }
+.feed__verdict{ text-align:right; letter-spacing:0.1em; }
+.feed__verdict.h{ color:var(--human); }
+.feed__verdict.b{ color:var(--agent); }
+@media (max-width:560px){
+  .feed__row{ grid-template-columns:6.5rem minmax(0,1fr) 3.4rem; font-size:0.74rem; gap:0.5rem; }
+}
+
+/* ── taxonomy ────────────────────────────── */
+.tax{ display:grid; gap:clamp(2.5rem,5vw,4rem); }
+@media (min-width:900px){ .tax{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+.tax__h{
+  display:flex; align-items:baseline; gap:0.7rem; margin-bottom:1.2rem;
+  padding-bottom:0.8rem; border-bottom:1px solid var(--line);
+}
+.tax__h b{ font-family:var(--mono); font-size:0.8rem; font-weight:500; letter-spacing:0.06em; }
+.tax__h span{ font-size:0.92rem; color:var(--dim); font-style:italic; }
+.chips{ display:flex; flex-wrap:wrap; gap:0.45rem; margin:0; padding:0; }
+.chips li{ list-style:none; }
+.chip{
+  display:inline-block; padding:0.45rem 0.8rem;
+  font-family:var(--mono); font-size:0.8rem; letter-spacing:0.05em;
+  color:var(--muted); border:1px solid var(--line-soft); border-radius:2px;
+  transition:color .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease);
+  cursor:default;
+}
+.chips--agent .chip:hover{ color:var(--agent); border-color:var(--agent); transform:translateY(-2px); }
+.chips--human .chip:hover{ color:var(--human); border-color:var(--human); transform:translateY(-2px); }
+.tax p{ margin:1.2rem 0 0; max-width:44ch; font-size:0.96rem; color:var(--muted); }
+
+/* ── papers ──────────────────────────────── */
+.filters{ display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.6rem; }
+.filter{
+  font-family:var(--mono); font-size:0.64rem; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--dim); background:transparent; border:1px solid var(--line-soft);
+  border-radius:2px; padding:0.5rem 0.85rem; cursor:pointer;
+  transition:color .2s var(--ease),border-color .2s var(--ease);
+}
+.filter:hover{ color:var(--paper); }
+.filter[aria-pressed="true"]{ color:var(--ink); background:var(--paper); border-color:var(--paper); }
+
+.papers{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
+.papers li{ border-bottom:1px solid var(--line-soft); transition:opacity .35s var(--ease); }
+.papers li[hidden]{ display:none; }
+.paper{ display:grid; gap:0.15rem 1.5rem; padding:0.95rem 0; text-decoration:none; }
+@media (min-width:760px){ .paper{ grid-template-columns:minmax(0,1fr) 13.5rem; align-items:baseline; } }
+.paper__t{ font-size:1.02rem; line-height:1.35; color:var(--paper); transition:color .2s var(--ease); }
+.paper__v{ font-family:var(--mono); font-size:0.78rem; letter-spacing:0.05em; color:var(--dim); line-height:1.5; }
+@media (min-width:760px){ .paper__v{ text-align:right; } }
+.papers li:hover .paper__t{ color:var(--human); }
+.count{ margin-top:1.4rem; font-family:var(--mono); font-size:0.78rem; letter-spacing:0.12em; color:var(--dim); }
+.count a{ color:var(--muted); }
+
+/* ── tools ───────────────────────────────── */
+.tools{ display:grid; gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); border-radius:2px; }
+@media (min-width:820px){ .tools{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+.tool{ background:var(--ink); padding:clamp(1.3rem,3vw,1.9rem); transition:background .3s var(--ease); }
+.tool:hover{ background:var(--ink-2); }
+.tool b{
+  display:block; margin-bottom:0.7rem; font-family:var(--mono);
+  font-size:0.86rem; font-weight:500; color:var(--paper); letter-spacing:0.02em;
+}
+.tool p{ margin:0; font-size:0.96rem; color:var(--muted); line-height:1.5; }
+
+/* ── book ────────────────────────────────── */
+.book{ display:grid; gap:clamp(2rem,5vw,3.5rem); align-items:start; }
+@media (min-width:900px){ .book{ grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); } }
+.book__title{
+  margin:0 0 1.2rem; font-size:clamp(1.9rem,1.3rem + 2.4vw,3.2rem);
+  font-weight:200; line-height:1.08; letter-spacing:-0.03em;
+}
+.book__title i{ font-weight:300; }
+.book p{ max-width:50ch; color:var(--soft); }
+.cite{
+  margin:0 0 1.4rem; padding:1.1rem 1.25rem; overflow-x:auto; white-space:pre;
+  font-family:var(--mono); font-size:0.84rem; line-height:1.75; color:var(--muted);
+  background:var(--ink-2); border:1px solid var(--line-soft); border-left:2px solid var(--human); border-radius:2px;
+}
+.linkrow{ display:flex; flex-wrap:wrap; gap:0.6rem; }
+.pill{
+  padding:0.6rem 0.95rem; text-decoration:none; color:var(--paper);
+  font-family:var(--mono); font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;
+  border:1px solid var(--line); border-radius:2px;
+  transition:border-color .2s var(--ease),color .2s var(--ease);
+}
+.pill:hover{ border-color:var(--human); color:var(--human); }
+
+/* ── log ─────────────────────────────────── */
+.log{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
+.log li{ border-bottom:1px solid var(--line-soft); }
+.log__row{ display:grid; gap:0.2rem 2rem; padding:1rem 0; text-decoration:none; }
+@media (min-width:760px){ .log__row{ grid-template-columns:7rem minmax(0,1fr) 10rem; align-items:baseline; } }
+.log__d{ font-family:var(--mono); font-size:0.78rem; letter-spacing:0.1em; color:var(--human); white-space:nowrap; }
+.log__t{ font-size:1rem; line-height:1.4; color:var(--paper); transition:color .2s var(--ease); }
+.log__s{ font-family:var(--mono); font-size:0.76rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--dim); }
+@media (min-width:760px){ .log__s{ text-align:right; } }
+.log li:hover .log__t{ color:var(--human); }
+
+/* ── credentials ─────────────────────────── */
+.creds{
+  display:grid; gap:1.6rem 2.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));
+  border-top:1px solid var(--line); padding-top:1.6rem;
+}
+.creds dt{
+  margin-bottom:0.4rem; font-family:var(--mono); font-size:0.74rem;
+  letter-spacing:0.16em; text-transform:uppercase; color:var(--dim);
+}
+.creds dd{ margin:0; font-size:1.04rem; line-height:1.5; color:var(--soft); }
+
+/* ── contact ─────────────────────────────── */
+.contact{ display:grid; gap:clamp(2rem,5vw,3rem); align-items:start; }
+@media (min-width:900px){ .contact{ grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); } }
+.mail{
+  display:inline-block; padding-bottom:0.35rem; text-decoration:none; word-break:break-word;
+  font-family:var(--mono); font-size:clamp(1.05rem,0.9rem + 1.1vw,1.9rem); font-weight:300;
+  letter-spacing:-0.02em; color:var(--paper); border-bottom:1px solid var(--line);
+  transition:color .2s var(--ease),border-color .2s var(--ease);
+}
+.mail:hover{ color:var(--human); border-color:var(--human); }
+.contact p{ margin:1.6rem 0 0; max-width:44ch; color:var(--soft); }
+.elsewhere{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
+.elsewhere li{ border-bottom:1px solid var(--line-soft); }
+.elsewhere a{
+  display:flex; justify-content:space-between; align-items:baseline; gap:1.5rem;
+  padding:0.85rem 0; text-decoration:none; font-family:var(--mono);
+  font-size:0.84rem; letter-spacing:0.1em; color:var(--paper);
+  transition:color .2s var(--ease);
+}
+.elsewhere a span{ font-size:0.76rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--dim); }
+.elsewhere a:hover{ color:var(--human); }
+
+/* ── footer ──────────────────────────────── */
+.foot{ border-top:1px solid var(--line-soft); padding-block:2.5rem 3.5rem; }
+.foot__in{
+  display:flex; flex-wrap:wrap; gap:1rem 2rem; align-items:baseline;
+  font-family:var(--mono); font-size:0.76rem; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--dim);
+}
+.foot__in a{ color:var(--muted); text-decoration:none; }
+.foot__in a:hover{ color:var(--paper); }
+.foot__note{ margin-left:auto; text-align:right; text-transform:none; letter-spacing:0.06em; }
+
+
+/* HUD */
+
+.hud{
+  position:fixed; left:0; right:0; bottom:0; z-index:70;
+  display:none;
+  background:rgba(10,15,20,0.9);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+  box-shadow:inset 0 1px 0 rgba(230,237,242,0.05), 0 -18px 34px rgba(0,0,0,0.36);
+}
+@media (min-width:1100px){
+  .hud{ display:block; }
+  body{ padding-bottom:5.4rem; }
+}
+.hud__in{
+  max-width:var(--max); margin-inline:auto;
+  padding:0.55rem var(--gut);
+  display:flex; align-items:center; gap:1.6rem;
+}
+
+.bay{
+  border:1px solid var(--line-soft);
+  border-radius:2px;
+  background:rgba(18,26,34,0.75);
+  box-shadow:inset 0 1px 0 rgba(230,237,242,0.045), inset 0 -1px 0 rgba(0,0,0,0.5);
+  padding:0.42rem 0.6rem;
+}
+.bay__k{
+  display:block; margin-bottom:0.3rem;
+  font-family:var(--mono); font-size:0.52rem; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--shade);
+}
+
+/* level map */
+.bay--map{ flex:1 1 auto; min-width:0; }
+.map{ display:flex; gap:2px; height:13px; }
+.map button{
+  flex:1 1 auto; min-width:6px; padding:0; cursor:pointer;
+  border:0; border-radius:1px;
+  background:var(--line);
+  transition:background .2s var(--ease), transform .2s var(--ease);
+}
+.map button:hover{ background:#33475A; transform:scaleY(1.25); }
+.map button[aria-current="true"]{ background:var(--agent); }
+
+/* resources */
+.bay--res{ flex:0 0 auto; }
+.res{ display:flex; gap:1.15rem; }
+.res div{ display:flex; align-items:center; gap:0.42rem; }
+.res svg{ display:block; flex:none; }
+.res b{
+  font-family:var(--pixel); font-size:0.82rem; font-weight:400;
+  color:var(--paper); line-height:1; letter-spacing:0.02em;
+}
+.res span{
+  font-family:var(--mono); font-size:0.82rem; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--shade);
+}
+
+/* hotkeys */
+.bay--keys{ flex:0 0 auto; }
+.keys{ display:flex; gap:0.4rem; align-items:center; }
+.keys button{ background:none; border:0; padding:0; cursor:pointer; line-height:0; }
+.keys button:hover kbd{ color:var(--human); border-color:var(--human); }
+.keys kbd{
+  font-family:var(--pixel); font-size:0.84rem; color:var(--paper);
+  background:var(--ink-3); border:1px solid var(--line);
+  border-radius:2px; padding:0.16rem 0.36rem; line-height:1;
+  box-shadow:inset 0 1px 0 rgba(230,237,242,0.06), 0 1px 0 rgba(0,0,0,0.5);
+}
+.keys em{
+  font-style:normal; font-family:var(--mono); font-size:0.82rem;
+  letter-spacing:0.14em; text-transform:uppercase; color:var(--shade);
+}
+
+/* selection brackets */
+.selectable{ position:relative; }
+.sel{
+  position:absolute; inset:-0.7rem -0.6rem; pointer-events:none;
+  opacity:0; transform:scale(1.012);
+  transition:opacity .22s var(--ease), transform .22s var(--ease);
+  background-repeat:no-repeat;
+  background-image:
+    linear-gradient(var(--human),var(--human)), linear-gradient(var(--human),var(--human)),
+    linear-gradient(var(--human),var(--human)), linear-gradient(var(--human),var(--human)),
+    linear-gradient(var(--human),var(--human)), linear-gradient(var(--human),var(--human)),
+    linear-gradient(var(--human),var(--human)), linear-gradient(var(--human),var(--human));
+  background-size:1px 15px, 15px 1px, 1px 15px, 15px 1px, 1px 15px, 15px 1px, 1px 15px, 15px 1px;
+  background-position:
+    0 0, 0 0,
+    100% 0, 100% 0,
+    0 100%, 0 100%,
+    100% 100%, 100% 100%;
+}
+.selectable:hover > .sel,
+.selectable:focus-within > .sel{ opacity:0.9; transform:none; }
+.station[tabindex]:focus{ outline:none; }
+.station[tabindex]:focus-visible{ outline:none; }
+.station[tabindex]:focus-visible > .sel{ opacity:1; }
+
+/* station tabs */
+.tab{
+  display:inline-flex; align-items:center; gap:0.5rem;
+  margin-bottom:0.7rem; padding:0.3rem 0.5rem 0.3rem 0.6rem;
+  border:1px solid var(--line-soft); border-radius:2px;
+  background:rgba(18,26,34,0.8);
+  box-shadow:inset 0 1px 0 rgba(230,237,242,0.045), inset 0 -1px 0 rgba(0,0,0,0.45);
+}
+.tab span{
+  font-family:var(--mono); font-size:0.64rem; letter-spacing:0.2em; color:var(--agent);
+}
+.tab kbd{
+  font-family:var(--pixel); font-size:0.78rem; color:var(--muted);
+  border:1px solid var(--line); border-radius:2px;
+  padding:0.1rem 0.28rem; line-height:1;
+}
+
+/* objectives */
+.brief{
+  display:flex; align-items:baseline; gap:0.6rem;
+  margin:0 0 0.85rem; padding-bottom:0.5rem;
+  border-bottom:1px solid var(--line-soft);
+}
+.brief b{
+  font-family:var(--mono); font-size:0.84rem; font-weight:400;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--human);
+}
+.brief i{ font-style:normal; font-family:var(--mono); font-size:0.84rem; letter-spacing:0.14em; color:var(--shade); }
+
+.station__qs li::before{
+  content:""; position:absolute; left:0; top:0.62em;
+  width:5px; height:5px; background:transparent;
+  border-top:1px solid var(--line); border-right:1px solid var(--line);
+  transform:rotate(45deg);
+}
+
+/* screen glass */
+.screen{ box-shadow:inset 0 1px 0 rgba(230,237,242,0.045), inset 0 -1px 0 rgba(0,0,0,0.5); }
+.screen__body{ position:relative; }
+.screen__body::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    repeating-linear-gradient(180deg, rgba(0,0,0,0.16) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(0,0,0,0.34) 100%);
+  mix-blend-mode:multiply;
+}
+
+/* Campaign map */
+.theatre{
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:linear-gradient(180deg,#0E151C,#0A1016);
+  box-shadow:inset 0 1px 0 rgba(230,237,242,0.05), inset 0 -1px 0 rgba(0,0,0,0.55);
+  overflow:hidden;
+}
+.theatre__bar{
+  display:flex; align-items:center; gap:0.9rem;
+  padding:0.55rem 0.85rem;
+  border-bottom:1px solid var(--line-soft);
+  font-family:var(--mono); font-size:1.2rem; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--shade);
+}
+.theatre__bar b{ color:var(--muted); font-weight:400; }
+.theatre__bar .r{ margin-left:auto; color:var(--dim); }
+
+.field{ display:block; width:100%; height:auto; aspect-ratio:5/2; }
+@media (max-width:700px){
+  .field{ aspect-ratio:5/2; }
+  .base .name, .base .sub{ display:none; }
+  .theatre__bar span{ display:none; }
+  .squad{ flex-direction:column; align-items:stretch; }
+  .unit{ justify-content:flex-start; }
+}
+.field text{ font-family:var(--mono); }
+
+.base{ cursor:pointer; }
+.base:focus{ outline:none; }
+.base .ring{ transform-box:fill-box; transform-origin:center; animation:spin 26s linear infinite; }
+.base:nth-of-type(2) .ring{ animation-duration:34s; animation-direction:reverse; }
+.base:nth-of-type(3) .ring{ animation-duration:30s; }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.base .halo{ opacity:0; transition:opacity .35s var(--ease); }
+.base .body{ transition:fill .3s var(--ease), stroke .3s var(--ease); }
+.base .brk{ opacity:0; transition:opacity .25s var(--ease); }
+.base .name{ fill:var(--muted); transition:fill .3s var(--ease); }
+.base .sub{ fill:var(--shade); }
+.base:hover .name,
+.base:focus-visible .name{ fill:var(--paper); }
+.base:focus-visible .brk{ opacity:.55; }
+.base.on .brk{ opacity:1; }
+.base.on .halo{ opacity:1; }
+.base.on .name{ fill:var(--paper); }
+.base.on .body{ fill:#16293C; stroke:var(--agent); }
+.base .pulse{ animation:ping 3.2s var(--ease) infinite; transform-box:fill-box; transform-origin:center; }
+@keyframes ping{
+  0%{ transform:scale(.55); opacity:.55; }
+  70%{ transform:scale(1.5); opacity:0; }
+  100%{ transform:scale(1.5); opacity:0; }
+}
+.supply{ stroke-dasharray:5 9; animation:flow 3.4s linear infinite; transition:stroke .35s var(--ease), opacity .35s var(--ease); opacity:.6; }
+.field[data-sel="1"] .supply[data-l~="1"],
+.field[data-sel="2"] .supply[data-l~="2"],
+.field[data-sel="3"] .supply[data-l~="3"]{ stroke:#6BB8FF; opacity:1; }
+@keyframes flow{ to{ stroke-dashoffset:-56; } }
+
+/* group buttons */
+.squad{ display:flex; gap:0.4rem; padding:0.6rem 0.85rem; border-top:1px solid var(--line-soft); flex-wrap:wrap; }
+.unit{
+  display:flex; align-items:center; gap:0.55rem;
+  padding:0.45rem 0.7rem; cursor:pointer;
+  background:rgba(18,26,34,0.8);
+  border:1px solid var(--line-soft); border-radius:2px;
+  box-shadow:inset 0 1px 0 rgba(230,237,242,0.045), inset 0 -1px 0 rgba(0,0,0,0.45);
+  transition:border-color .2s var(--ease), background .2s var(--ease);
+}
+.unit kbd{
+  font-family:var(--pixel); font-size:0.78rem; color:var(--muted);
+  border:1px solid var(--line); border-radius:2px; padding:0.08rem 0.28rem; line-height:1;
+}
+.unit i{ font-style:normal; font-family:var(--mono); font-size:0.78rem; letter-spacing:0.14em; color:var(--muted); }
+.unit em{ font-style:normal; font-family:var(--mono); font-size:0.56rem; letter-spacing:0.1em; color:var(--shade); }
+.unit:hover{ border-color:var(--line); background:rgba(24,34,44,0.9); }
+.unit[aria-pressed="true"]{ border-color:var(--agent); }
+.unit[aria-pressed="true"] i{ color:var(--paper); }
+.unit[aria-pressed="true"] kbd{ color:var(--agent); border-color:var(--agent); }
+
+/* selected-unit detail */
+.deploy{ margin-top:clamp(1.6rem,4vw,2.4rem); }
+.deploy[hidden]{ display:none; }
+.deploy__head{
+  display:grid; gap:0.9rem; align-items:baseline;
+  padding-bottom:1rem; margin-bottom:1.4rem;
+  border-bottom:1px solid var(--line);
+}
+@media (min-width:900px){ .deploy__head{ grid-template-columns:minmax(0,1fr) auto; } }
+.deploy__name{
+  margin:0; font-family:var(--mono); font-size:1.4rem; font-weight:500;
+  letter-spacing:-0.01em; color:var(--paper); line-height:1.1;
+}
+.deploy__name .lc{ text-transform:lowercase; color:var(--muted); font-weight:300; }
+.deploy__full{ margin:0.45rem 0 0; font-size:1.02rem; color:var(--dim); max-width:58ch; line-height:1.45; }
+.deploy__stats{ display:flex; gap:1.4rem; }
+.deploy__stats div{ text-align:right; }
+.deploy__stats b{ display:block; font-family:var(--pixel); font-size:1.02rem; color:var(--paper); line-height:1; }
+.deploy__stats span{ font-family:var(--mono); font-size:0.82rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--shade); }
+.deploy__grid{ display:grid; gap:clamp(1.6rem,4vw,2.6rem); }
+@media (min-width:1000px){ .deploy__grid{ grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); align-items:start; } }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .rv{ opacity:1; transform:none; transition:none !important; }
+  .hero h1 b{ transform:none; transition:none; }
+  .feed__row{ opacity:1; transform:none; animation:none; }
+  .base .ring,.base .pulse,.supply{ animation:none; }
+  .sel{ transition:none; }
+  .map button{ transition:none; }
+  *{ animation-duration:.001s !important; animation-iteration-count:1 !important; }
+}
+</style>
+</head>
 <body>
-    <div class="wrapper">
-        <div class="navbar container">
-            <a id="author-name" class="alignable pull-left" href=".">Lynnette Hui Xian <u>NG</u></a> 
-            <ul class="alignable pull-right navbar-ul">
 
-              <!-- <li class="alignable pull-right nav-list"><a class="cool-link" href="teaching">Teaching</a>
-              </li> -->
+<header class="bar">
+  <div class="bar__in">
+    <a class="bar__mark" href="https://quarbby.github.io/">THE LAN SHOP</a>
+    <nav class="bar__nav" aria-label="Sections">
+      <a href="#trace">Trace</a>
+      <a href="#universe">BotBuster</a>
+      <a href="#stations">Stations</a>
+      <a href="#papers">Papers</a>
+      <a href="#book">Book</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="themeBtn" id="themeBtn" type="button" aria-pressed="false">Dark</button>
+    <span class="bar__clock"><i>●</i> <span id="clock">--:--:--</span> SGT</span>
+  </div>
+  <div class="bar__progress" id="prog"></div>
+</header>
 
-              <!-- <li class="alignable pull-right nav-list"><a class="cool-link" href="./research.html">Research</a>
-              </li> -->
+<main>
 
-              <li class="alignable pull-right nav-list"><a class="cool-link" href="./blog.html">Blog</a>
-              </li>
+<!-- ── hero ─────────────────────────────── -->
+<section class="hero" id="top">
+  <div class="wrap" id="heroWrap">
+    <h1 class="hero__lockup">
+      <span class="shop"><b>The <em id="lanWord">LAN</em> Shop</b></span>
+    </h1>
 
-              <li class="alignable pull-right nav-list"><a class="cool-link" href="./resources.html">Talks & Resources</a>
-              </li>
+    <p class="hero__rail rv d1" id="hero-rail">
+      <span class="rail__w" data-i="0"><b>L</b>anguage</span>
+      <span class="rail__w" data-i="1"><b>A</b>gents</span>
+      <span class="rail__w" data-i="2"><b>N</b>etworks</span>
+    </p>
 
-              <li class="alignable pull-right nav-list"><a class="cool-link" href="./pub.html">Publications</a>
-              </li>
-            
-              <li class="alignable pull-right nav-list"><a class="cool-link" href="./research.html">Research Interests</a>
-              </li>
-                
-            </ul>
+    <p class="hero__by rv d2">
+      <span class="hero__by-k">Run by</span>
+      <span class="hero__by-n">Lynnette Hui Xian Ng</span>
+    </p>
+
+    <div class="hero__lower rv d1">
+      <div>
+        <p class="hero__deck">
+          I study how language, artificial agents and network structure
+          <strong>together</strong> manufacture influence online — and I build the
+          instruments to detect, simulate and govern it.
+        </p>
+        <div class="hero__meta">
+          <span>Information Programme Center · DSTA · Singapore</span>
+          <span>PhD, Societal Computing · Carnegie Mellon</span>
         </div>
-        <div style="clear:both"></div>
-        <hr>
-        <div class="container content">
-          <h2 id="about-me">Exploring Creativity</h2>
+      </div>
+      <div class="door">
+        <span class="label">The door</span>
+        <p>
+          Applied graph theory, social media analysis, multi-agent social systems.
+          Write to me even if you don't think your idea fits.
+        </p>
+        <a href="mailto:lynnetteng@cmu.edu">lynnetteng@cmu.edu</a>
+      </div>
+    </div>
 
-          <div class="row">
-             <div class="col-md-4" >
-           <br> 
-            <img class="profile-picture" src="img/me.jpg" />
-          </div>
-        <div class="col-md-8" style="vertical-align:text-top;">
-          <p class="hyphens">
-            I am Deputy Head (Information Management) at the Information Programme Center, <a href="https://www.dsta.gov.sg/" target="_blank">DSTA, Singapore</a>. My lab is called <a href="./lan_shop.html">The LAN Shop</a> &mdash; where we study Language, Agents, and Networks in the context of online social spaces, online influence and persuasion.
+    <div class="instr rv d2" id="trace">
+      <div class="instr__head">
+        <span class="instr__title">Live sample · posting trace</span>
+        <span class="instr__sub">48 accounts. Thirty seconds. Some of them aren't deciding for themselves.</span>
+        <button class="btn btn--push" id="revealBtn" type="button" aria-pressed="false">Reveal coordination</button>
+      </div>
+      <div class="plot">
+        <canvas id="trace-cv" role="img" aria-label="A scrolling plot of 48 accounts posting over thirty seconds. A hidden subset posts in near-perfect unison."></canvas>
+        <div class="plot__axis"><span>−30s</span><span>−20s</span><span>−10s</span><span>now</span></div>
+      </div>
+      <div class="readout">
+        <div class="metric">
+          <span class="metric__k">Synchrony, whole field</span>
+          <span class="metric__v" id="mAll">0.00</span>
+        </div>
+        <div class="metric metric--flag metric--hidden" id="mFlagWrap">
+          <span class="metric__k">Synchrony, flagged cluster</span>
+          <span class="metric__v" id="mFlag">0.00</span>
+        </div>
+        <div class="metric metric--hidden" id="mCountWrap">
+          <span class="metric__k">Accounts moving as one</span>
+          <span class="metric__v" id="mCount">0</span>
+        </div>
+      </div>
+      <p class="instr__note">
+        One account posting is nothing. A dozen accounts landing inside the same
+        fifth of a second, again and again, is a structure — and structure can be
+        measured. The field never reads zero: strangers do collide by chance, and
+        separating coordination from coincidence is the whole difficulty.
+        I built a measure for it: the
+        <a href="https://link.springer.com/article/10.1007/s41109-022-00526-3" target="_blank" rel="noopener">Combined Synchronization Index</a>,
+        which scores synchrony at three levels — user pair, user, whole network — and
+        across three actions at once: hashtags, URLs and @mentions.
+      </p>
+    </div>
+  </div>
+</section>
 
-            I obtained my PhD in <a href="https://sc.cs.cmu.edu/">Societal Computing</a> at the Department of Computer Science in <a href="https://www.cmu.edu/">Carnegie Mellon University</a>, supervised by <a href="http://www.casos.cs.cmu.edu/bios/carley/carley.html"> Prof Kathleen Carley</a>.
+<!-- ── creed ────────────────────────────── -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="creed rv">
+      <p>
+        The internet is no longer only <span class="h">people</span> talking to
+        <span class="h">people</span>. It is <span class="a">agents</span> talking to
+        <span class="h">people</span>, and <span class="a">agents</span> talking to
+        <span class="a">agents</span>.
+      </p>
+      <p class="creed__foot">
+        My work here is telling which is which, watching what happens when they meet,
+        and building tools other people can run themselves.
+      </p>
+    </div>
 
-           My research interests are the study of the interaction between AI agents (bots) and humans in online communities and automated persuasion. My research methodologies involve <strong>network science</strong>, <strong>computational social sciences</strong> and <strong>natural language processing</strong>. 
+    <div class="stats rv d1" id="stats">
+      <div>
+        <div class="stat__v" data-to="4">0</div>
+        <span class="stat__k">platforms my detector covers: X, Reddit, Instagram, Telegram</span>
+      </div>
+      <div>
+        <div class="stat__v" data-to="8">0</div>
+        <span class="stat__k">account roles my sorter tells apart</span>
+      </div>
+      <div>
+        <div class="stat__v" data-to="7">0</div>
+        <span class="stat__k">cognitive biases my message reader looks for</span>
+      </div>
+      <div>
+        <div class="stat__v" data-to="18">0</div>
+        <span class="stat__k">papers, reports and a book listed below</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-           You can download my latest resume <a href="../pdfs/2026_resume.pdf" target="_blank">here</a>.         
-           
-          I received my Bachelors in Computer Science from the <a href="https://www.comp.nus.edu.sg/">Department of Computer Science</a> of National University of Singapore, where I won the <a href="https://www.comp.nus.edu.sg/programmes/ug/honour/commencement/">NUSS medal for Outstanding Achivement</a>. 
-          </p> <br><br>
+<!-- ── botbuster universe ───────────────── -->
+<section class="section" id="universe">
+  <div class="wrap">
+    <div class="section__head rv">
+      <span class="label">The BotBuster Universe</span>
+      <h2 class="section__title">Three tools, <em>one account.</em> Is it automated? What is it for? What is it doing to you?</h2>
+    </div>
 
-          <h2 id="phd-thesis">PhD Thesis</h2>
-            <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px;">
+    <div class="tools rv d1">
+      <div class="tool">
+        <b>BotBuster</b>
+        <p>Is this account automated? A mixture of experts, each one reading a different signal, pooled into a single probability. It runs on X, Reddit, Instagram bios and Telegram.</p>
+      </div>
+      <div class="tool">
+        <b>BotSorter</b>
+        <p>What kind of account is it? Not bot-or-not — role. Amplifier, announcer, repeater, bridge, cyborg, news, content generator, self-declared bot.</p>
+      </div>
+      <div class="tool">
+        <b>BotBias</b>
+        <p>What is the message doing to the reader? It reads a post for the cognitive levers it pulls — authority, negativity, familiarity, the company you keep.</p>
+      </div>
+    </div>
 
-              <!-- Text -->
-              <div style="flex: 1;">
-                My thesis looks at the <b>Foundations of Cyber Social Agents</b>.
-                Read more about my thesis <a href="./research/thesis.html" target="_blank">here</a>.
-                <br>
-                A portion of the thesis has been published into a trade book 
-                <b>Bot, Bias and Influence: The Hidden Architects of Social Media</b> 
-                by Cambridge Publishing Press. <br>
-                <a href="https://www.amazon.com/gp/product/1036473104/ref=ox_sc_act_title_2?smid=ATVPDKIKX0DER&psc=1" target="_blank">Amazon Link</a> / <a href="https://www.cambridgescholars.com/product/978-1-0364-7310-5" target="_blank">Publisher Link</a>
-                If you need a discount code, or would like to do a book review, please email me! <br>
-                <blockquote>
-                <pre>
-                @book{ng2026bots,
-                  title={Bots, Bias, and Influence: The Hidden Architects of Social Media},
-                  author={Ng, L.H.X. and Carley, K.M.},
-                  isbn={9781036473112},
-                  url={https://books.google.com/books?id=dnTtEQAAQBAJ},
-                  year={2026},
-                  publisher={Cambridge Scholars Publishing}
-                }
-                </pre>
-                </blockquote>
-              </div>
+    <div class="tax rv d2" style="margin-top:clamp(2.5rem,6vw,4rem);">
+      <div>
+        <div class="tax__h">
+          <b>BotSorter</b><span>eight roles an account can play</span>
+        </div>
+        <ul class="chips chips--agent">
+          <li><span class="chip">self-declared bot</span></li>
+          <li><span class="chip">news</span></li>
+          <li><span class="chip">bridging</span></li>
+          <li><span class="chip">amplifier</span></li>
+          <li><span class="chip">cyborg</span></li>
+          <li><span class="chip">content generation</span></li>
+          <li><span class="chip">announcer</span></li>
+          <li><span class="chip">repeater</span></li>
+        </ul>
+        <p>I made the sorter deliberately silent on bot-or-human. You merge its output with the detector's, and only then do you know what you are looking at.</p>
+      </div>
+      <div>
+        <div class="tax__h">
+          <b>BotBias</b><span>seven levers a message can pull</span>
+        </div>
+        <ul class="chips chips--human">
+          <li><span class="chip">homophily</span></li>
+          <li><span class="chip">affect bias</span></li>
+          <li><span class="chip">negativity bias</span></li>
+          <li><span class="chip">authority bias</span></li>
+          <li><span class="chip">illusory truth effect</span></li>
+          <li><span class="chip">availability bias</span></li>
+          <li><span class="chip">confirmation bias</span></li>
+        </ul>
+        <p>These are human vulnerabilities, not machine tricks. That is the point: the detector looks at the sender, this one looks at what the sender knows about you.</p>
+      </div>
+    </div>
 
-              <!-- Image -->
-              <div style="flex-shrink: 0;">
-                <img 
-                  src="./img/2026_book_botbias.png" 
-                  alt="Bot, Bias and Influence: The Hidden Architects of Social Media"
-                  style="width: 200px; height: auto; border-radius: 8px;"
-                >
-              </div>
+    <div class="linkrow rv d3" style="margin-top:clamp(2rem,4vw,2.6rem);">
+      <a class="pill" href="https://quarbby.github.io/research/botbuster_universe.html">All the papers</a>
+      <a class="pill" href="https://github.com/quarbby/BotBuster-Universe" target="_blank" rel="noopener">Repository</a>
+      <a class="pill" href="https://github.com/quarbby/synchronization_index" target="_blank" rel="noopener">Synchronization index</a>
+      <a class="pill" href="https://github.com/quarbby/coordinating-narratives-information-spread" target="_blank" rel="noopener">Coordinating narratives</a>
+      <a class="pill" href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+    </div>
+  </div>
+</section>
 
-            </div>
+<!-- ── stations ─────────────────────────── -->
+<section class="section" id="stations">
+  <div class="wrap">
+    <div class="section__head rv">
+      <span class="label">Three terminals</span>
+      <h2 class="section__title">A LAN shop rents you a machine by the hour. Mine runs <em>three research programmes</em>, and I named them after the games we grew up on.</h2>
+    </div>
 
+    <div class="theatre rv">
+      <div class="theatre__bar">
+        <b>Theatre</b> <span>language · agents · networks</span>
+        <span class="r">select a station — click, or press 1 2 3</span>
       </div>
 
-      <h2 id="heart-transplant">My Heart Transplant Story</h2>
-        <p>
-          I was born with Hypertrophic cardiomyopathy is a condition in which the heart becomes thickened But it means that I was easily breathless, and had lots of trouble doing even the most minute stuff like climbing a flight of stairs.
-          Then my electrical rhythm started to fail. I had two pacemakers implanted since I was a teenager.
+      <svg class="field" id="field" data-sel="1" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Map of three research stations">
+        <defs>
+          <pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse">
+            <path d="M25 0H0V25" fill="none" stroke="var(--plot-grid)" stroke-width="0.6"/>
+          </pattern>
+          <radialGradient id="glow">
+            <stop offset="0%" stop-color="var(--agent)" stop-opacity="0.20"/>
+            <stop offset="100%" stop-color="var(--agent)" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="vig">
+            <stop offset="55%" stop-color="var(--vig)" stop-opacity="0"/>
+            <stop offset="100%" stop-color="var(--vig)" stop-opacity="var(--vig-a)"/>
+          </radialGradient>
+        </defs>
 
-          I battled this for 29 years, the pain, the medications. 
-          One day in Feb 2023, I wasn't responding to the normal medications.
-          On March 16 2023, my heart went into an abnormal rhythm for 39 days. 
-          After much failed medication attempts, I was admitted to UPMC Presbyterian hospital. 
-          There, I was blessed to receive a heart transplant. 
-          
-          It is a whirlwind story, and I am still writing it. <br>
-          <a href="https://quarbby.substack.com">Read & Subscribe to the stories!</a>
-          <!--Hopefully with enough traction, this will become a book.-->
-          <br>
-          <!-- One day I will write a book. If any one knows of a literary agent or is one, and is interested in this story, please reach out!! <br> -->
+        <rect width="1000" height="400" fill="url(#grid)"/>
+        <g fill="none" stroke="var(--plot-line)" stroke-width="1">
+          <path d="M-20 300 C 140 250, 220 330, 360 286 S 640 210, 760 262 S 960 240, 1020 214"/>
+          <path d="M-20 336 C 150 292, 240 366, 380 322 S 660 252, 780 300 S 980 282, 1020 258"/>
+          <path d="M-20 96 C 120 132, 260 66, 400 104 S 660 148, 800 104 S 970 66, 1020 88"/>
+        </g>
 
-          <!-- <a href="./blog/hearttransplant.html">Summary as of January 2024</a> <br> -->
+        <g stroke="var(--plot-edge)" stroke-width="1" fill="none">
+          <path class="supply" data-l="1 2" d="M200 130 L520 290"/>
+          <path class="supply" data-l="2 3" d="M520 290 L820 150"/>
+          <path class="supply" data-l="1 3" d="M200 130 L820 150"/>
+        </g>
 
-          <!-- <b>Please help my transplant costs!!</b><br>
-          If you would like to make a donation to help my transplant costs, you may use <a href="https://venmo.com/u/Lynnette-Ng" target="_blank" >Venmo</a> @Lynnette-Ng with last 4-digits as 1254, or <a href="https://paypal.me/lynnettenghx?country.x=SG" target="_blank">PayPal</a> @lynnettenghx
-        </p> -->
+      <g class="base" data-b="1" role="button" tabindex="0" aria-pressed="true" aria-label="Select PC-01, DOTA">
+        <circle class="halo" cx="200" cy="130" r="52" fill="url(#glow)"/>
+        <circle class="pulse" cx="200" cy="130" r="30" fill="none" stroke="var(--agent)" stroke-width="1"/>
+        <circle class="ring" cx="200" cy="130" r="30" fill="none" stroke="var(--plot-ring)" stroke-width="1" stroke-dasharray="3 7"/>
+        <g class="brk" stroke="var(--human)" stroke-width="1.4" fill="none">
+          <path d="M158 98 v-10 h10"/><path d="M242 98 v-10 h-10"/>
+          <path d="M158 162 v10 h10"/><path d="M242 162 v10 h-10"/>
+        </g>
+        <path class="body" d="M200 113 L217 130 L200 147 L183 130 Z" fill="var(--plot-node)" stroke="var(--plot-stroke)" stroke-width="1.5"/>
+        <circle cx="200" cy="130" r="4" fill="var(--agent)"/>
+        <text class="name" x="200" y="188" text-anchor="middle" font-size="13" letter-spacing="1.6">PC-01 · DOTA</text>
+        <text class="sub"  x="200" y="204" text-anchor="middle" font-size="10" letter-spacing="1.4">4 papers</text>
+      </g>
+      <g class="base" data-b="2" role="button" tabindex="0" aria-pressed="false" aria-label="Select PC-02, STARcraft">
+        <circle class="halo" cx="520" cy="290" r="52" fill="url(#glow)"/>
+        <circle class="pulse" cx="520" cy="290" r="30" fill="none" stroke="var(--agent)" stroke-width="1"/>
+        <circle class="ring" cx="520" cy="290" r="30" fill="none" stroke="var(--plot-ring)" stroke-width="1" stroke-dasharray="3 7"/>
+        <g class="brk" stroke="var(--human)" stroke-width="1.4" fill="none">
+          <path d="M478 258 v-10 h10"/><path d="M562 258 v-10 h-10"/>
+          <path d="M478 322 v10 h10"/><path d="M562 322 v10 h-10"/>
+        </g>
+        <path class="body" d="M520 273 L537 290 L520 307 L503 290 Z" fill="var(--plot-node)" stroke="var(--plot-stroke)" stroke-width="1.5"/>
+        <circle cx="520" cy="290" r="4" fill="var(--agent)"/>
+        <text class="name" x="520" y="348" text-anchor="middle" font-size="13" letter-spacing="1.6">PC-02 · STARcraft</text>
+        <text class="sub"  x="520" y="364" text-anchor="middle" font-size="10" letter-spacing="1.4">4 papers</text>
+      </g>
+      <g class="base" data-b="3" role="button" tabindex="0" aria-pressed="false" aria-label="Select PC-03, MINEcraft">
+        <circle class="halo" cx="820" cy="150" r="52" fill="url(#glow)"/>
+        <circle class="pulse" cx="820" cy="150" r="30" fill="none" stroke="var(--agent)" stroke-width="1"/>
+        <circle class="ring" cx="820" cy="150" r="30" fill="none" stroke="var(--plot-ring)" stroke-width="1" stroke-dasharray="3 7"/>
+        <g class="brk" stroke="var(--human)" stroke-width="1.4" fill="none">
+          <path d="M778 118 v-10 h10"/><path d="M862 118 v-10 h-10"/>
+          <path d="M778 182 v10 h10"/><path d="M862 182 v10 h-10"/>
+        </g>
+        <path class="body" d="M820 133 L837 150 L820 167 L803 150 Z" fill="var(--plot-node)" stroke="var(--plot-stroke)" stroke-width="1.5"/>
+        <circle cx="820" cy="150" r="4" fill="var(--agent)"/>
+        <text class="name" x="820" y="208" text-anchor="middle" font-size="13" letter-spacing="1.6">PC-03 · MINEcraft</text>
+        <text class="sub"  x="820" y="224" text-anchor="middle" font-size="10" letter-spacing="1.4">4 papers</text>
+      </g>
 
+        <rect width="1000" height="400" fill="url(#vig)" pointer-events="none"/>
+      </svg>
 
-        <h2 id="hobbies">What I do outside research</h2>
-          <p>
-            I play the violin. I play the violin for the Pittsburgh Philharmonic Orchestra <br>
-            I also love to explore the city of Pittsburgh and the wider United States. Even more so after discovering bits and pieces that are so amazing of a normal human.
-            Check out some of my explorations on  <a href="http://instagram.com/littlebabypenguin" target="_blank">my Instagram!</a> It also contains snippets of my PhD life! This instagram account and its adventures have been featured on <a href="https://www.cs.cmu.edu/news/2025/mascots" target="_blank">School of Computing</a>.
-          </p> 
+      <div class="squad" role="group" aria-label="Select a station">
+        <button class="unit" type="button" data-u="1" aria-pressed="true"><kbd>1</kbd><i>DOTA</i><em>agents</em></button>
+        <button class="unit" type="button" data-u="2" aria-pressed="false"><kbd>2</kbd><i>STARcraft</i><em>simulation</em></button>
+        <button class="unit" type="button" data-u="3" aria-pressed="false"><kbd>3</kbd><i>MINEcraft</i><em>networks</em></button>
+      </div>
+    </div>
 
-          <h2 id="research-interest">Research Interests</h2>
-
-          <ul>
-            <li>Societal Computing</li>
-            <li>Network Analysis</li>
+    <div class="deploy" data-p="1">
+      <div class="deploy__head">
+        <div>
+          <h3 class="deploy__name">DOTA<span class="lc"></span></h3>
+          <p class="deploy__full">PC-01 — Design Of The Agents</p>
+        </div>
+        <div class="deploy__stats">
+          <div><b>4</b><span>objectives</span></div>
+          <div><b>4</b><span>papers</span></div>
+          <div><b>online</b><span>status</span></div>
+        </div>
+      </div>
+      <div class="deploy__grid">
+        <div>
+          <div class="screen" data-screen="feed">
+            <div class="screen__bar"><b>BotBuster</b> <span>mixture of experts</span><span class="screen__live">classifying</span></div>
+            <div class="screen__body"><div class="feed" id="feed" aria-hidden="true"></div></div>
+            <div class="screen__foot">
+              <span>seen <span class="v" id="feedSeen">0</span></span>
+              <span>flagged automated <span class="v" id="feedBots">0</span></span>
+              <span>sample feed</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="brief"><b>Objectives</b><i>open</i></p>
+          <ul class="station__qs">
+            <li>What is an agent, and how would we catch one?</li>
+            <li>How do agents influence humans, and each other?</li>
+            <li>How do we design and model a realistic agent?</li>
+            <li>And which way does it run — can humans influence agents?</li>
           </ul>
-
-
-          <h2 id="awards">Talks, Awards, News Features</h2>
-           <div style="height:800px;line-height:1.428571429em;overflow:auto;padding:5px;">
-
-            <ul>
-              <li>Jan 2026: Gave a Talk at University of Pittsburgh CS Colloquium ``Simulating Social Media Bot Personas with LLM-Augmented Agent-Based Models at University of Pittsburgh"</li>
-              <li>Dec 2025: Work featured on Channel News Asia "Commentary: X’s account transparency features confirm what many already suspected" <a href="https://www.channelnewsasia.com/commentary/x-account-transparency-user-location-maga-account-5563741">article here</a></li>
-              <li>Nov 2025: Interviewed in a video "Is the Internet Really Dead" by NewsPress. <a href="https://youtu.be/qWK47sqLmJQ?si=-EYK7_fK8FjZGcLM">video here</a></li>
-              <!-- <li>Aug 2026: Awarded "Young NUS Fellow" and the NUS Development Grant</li> -->
-              <li>Oct 2024: Best Poster Award for <a href="https://www.duq.edu/research/centers-and-institutes/grefenstette-center/grefenstette-symposium.php" target="_blank">Grefenstette Center Tech Ethics Symposium</a> </li>
-              <li>Sept 2024: SBP-BRiMS tutorial: The BotBuster Universe</li>
-              <li>April 2024: IDeaS Newsletter Research Spotlight</li>
-              <li>March 2024: CMU GUSH Grant</li>
-              <li>Aug 2023: CMU School of Computer Science feature:
-                <a href="https://www.cs.cmu.edu/news/2023/stance-detection-models" target="_blank">Standardized Data Set Annotations Could Aid in Detecting Social Media Sentiments</a> for paper <a href="https://www.sciencedirect.com/science/article/pii/S0306457322001728" target="_blank">Is my stance the same as your stance? A cross validation study of stance detection datasets</a></li>
-              <li>Aug 2023: New Scientist feature
-                <a href="https://www.newscientist.com/article/2414259-armies-of-bots-battled-on-twitter-over-chinese-spy-balloon-incident/" target="_blank">Armies of bots battled on Twitter over Chinese spy balloon incident</a> for paper <a href="https://link.springer.com/article/10.1140/epjds/s13688-023-00440-3" target="_blank">Deflating the Chinese balloon: types of Twitter bots in US-China balloon incident</a> <br>
-                It was also featured on Reddit's r/Science! Read it <a href="https://www.reddit.com/r/science/comments/1aijqmr/armies_of_bots_battled_on_twitter_over_chinese/" target="_blank">here!!</a></li>
-              <li>Mar 2023: Interviewed on Scientific American about misinformation and disinformation patterns <a href="https://www.scientificamerican.com/article/false-headlines-plausibility-belief/" target="_blank">Read it here</a></li>
-              <li>Jan 2022: Input Magazine feature:
-                <a href="https://www.inverse.com/input/culture/tiktok-challenges-virality-study-renegade-charli-damelio-bored-in-the-house" target="_blank">Have researchers cracked the code to TikTok virality?</a>for paper <a href="https://dl.acm.org/doi/abs/10.1145/3487351.3488276" target="_blank">Will you dance to the challenge?: predicting user participation of TikTok challenges</a></li>
-            </ul>
-
+          <ul class="papers">
+            <li><a class="paper" href="https://www.cambridgescholars.com/product/978-1-0364-7310-5" target="_blank" rel="noopener"><span class="paper__t">Bots, Bias, and Influence: The Hidden Architects of Social Media</span><span class="paper__v">Cambridge Scholars · 2026</span></a></li>
+            <li><a class="paper" href="https://ojs.aaai.org/index.php/ICWSM/article/view/22178" target="_blank" rel="noopener"><span class="paper__t">BotBuster: multi-platform bot detection using a mixture of experts</span><span class="paper__v">AAAI ICWSM 17 · 2023</span></a></li>
+            <li><a class="paper" href="https://link.springer.com/article/10.1140/epjds/s13688-023-00440-3" target="_blank" rel="noopener"><span class="paper__t">Deflating the Chinese balloon: types of Twitter bots in the US–China balloon incident</span><span class="paper__v">EPJ Data Science 12 · 2023</span></a></li>
+            <li><a class="paper" href="https://ieeexplore.ieee.org/document/9862989" target="_blank" rel="noopener"><span class="paper__t">Pro or anti? A social influence model of online stance flipping</span><span class="paper__v">IEEE TNSE 10(1) · 2022</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="deploy" data-p="2" hidden>
+      <div class="deploy__head">
+        <div>
+          <h3 class="deploy__name">STAR<span class="lc">craft</span></h3>
+          <p class="deploy__full">PC-02 — Social Topology &amp; Agent Relationships: Computational Research Architecture &amp; Framework Toolkit</p>
+        </div>
+        <div class="deploy__stats">
+          <div><b>3</b><span>objectives</span></div>
+          <div><b>4</b><span>papers</span></div>
+          <div><b>online</b><span>status</span></div>
+        </div>
+      </div>
+      <div class="deploy__grid">
+        <div>
+          <div class="screen" data-screen="sim">
+            <div class="screen__bar"><b>BotSim</b> <span>belief contagion</span><span class="screen__live">running</span></div>
+            <div class="screen__body"><canvas id="sim-cv" role="img" aria-label="A simulated population in which a seeded belief spreads between neighbouring agents; useful bots can be released to damp it."></canvas></div>
+            <div class="screen__foot">
+              <span>adoption <span class="v" id="simAdopt">0%</span></span>
+              <span>useful bots <span class="v" id="simBots">0</span></span>
+              <button class="btn" id="simBtn" type="button">Release useful bots</button>
             </div>
-
-          <h2 id="service">Teaching and Service</h2>
-           <div style="height:800px;line-height:1.428571429em;overflow:auto;padding:5px;">
-              <ul>
-                <li>2021-2025: CASOS Summer Institute talks and organization</li>
-                <li>June 2025: PC Member, AAAI</li>
-                <li>2024-2025: PC Member, CySoC workshop, ICWSM</li>
-                <li>Reviewer for PLOS One, Scientific Reports, AI & Society, Social Network Analysis and Mining, Information Processing and Management, Journal of Computational Social Science</li>
-                <li>2024-2025: Teaching Assistant <a href="https://www.cmu.edu/ideas-social-cybersecurity/courses/19-640.html" target="_blank">Dynamic Network Analysis (17-801)</a>, <a href="https://www.cmu.edu/casos-center/events/courses/index.html" target="_blank">Computational Modeling of Complex Socio-Technical Systems (17-821)</a> </li>
-              </ul>
-
-
+          </div>
+        </div>
+        <div>
+          <p class="brief"><b>Objectives</b><i>open</i></p>
+          <ul class="station__qs">
+            <li>Can a simulated society of agents behave like a real one?</li>
+            <li>Do those simulations reproduce the social theory we already trust?</li>
+            <li>And how would we validate them if they did?</li>
+          </ul>
+          <ul class="papers">
+            <li><a class="paper" href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener"><span class="paper__t">A formal framework for multi-agent social systems</span><span class="paper__v">arXiv:2605.07069 · 2026</span></a></li>
+            <li><a class="paper" href="https://www.jasss.org/" target="_blank" rel="noopener"><span class="paper__t">BotSim: mitigating the formation of conspiratorial societies with useful bots</span><span class="paper__v">JASSS 29(1) · 2026</span></a></li>
+            <li><a class="paper" href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener"><span class="paper__t">AuraSight: generating realistic social media data</span><span class="paper__v">CMU-S3D-25-109 · 2025</span></a></li>
+            <li><a class="paper" href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener"><span class="paper__t">Are LLM-powered social media bots realistic?</span><span class="paper__v">SBP-BRiMS · 2025</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="deploy" data-p="3" hidden>
+      <div class="deploy__head">
+        <div>
+          <h3 class="deploy__name">MINE<span class="lc">craft</span></h3>
+          <p class="deploy__full">PC-03 — Measuring Information &amp; Network Emergence</p>
+        </div>
+        <div class="deploy__stats">
+          <div><b>3</b><span>objectives</span></div>
+          <div><b>4</b><span>papers</span></div>
+          <div><b>online</b><span>status</span></div>
+        </div>
+      </div>
+      <div class="deploy__grid">
+        <div>
+          <div class="screen" data-screen="net">
+            <div class="screen__bar"><b>Star motifs</b> <span>network emergence</span><span class="screen__live">growing</span></div>
+            <div class="screen__body"><canvas id="net-cv" role="img" aria-label="A network growing by preferential attachment; hubs with many spokes are highlighted as star motifs."></canvas></div>
+            <div class="screen__foot">
+              <span>nodes <span class="v" id="netN">0</span></span>
+              <span>star motifs <span class="v" id="netH">0</span></span>
+              <button class="btn" id="netBtn" type="button">Regrow</button>
             </div>
+          </div>
+        </div>
+        <div>
+          <p class="brief"><b>Objectives</b><i>open</i></p>
+          <ul class="station__qs">
+            <li>How do we measure one networked structure against another?</li>
+            <li>When is a shared narrative coordinated, and when is it coincidence?</li>
+            <li>Where in a narrative's life does an intervention still work?</li>
+          </ul>
+          <ul class="papers">
+            <li><a class="paper" href="https://link.springer.com/article/10.1007/s41109-022-00526-3" target="_blank" rel="noopener"><span class="paper__t">A combined synchronization index for evaluating collective action on social media</span><span class="paper__v">Appl. Netw. Sci. 8(1) · 2023</span></a></li>
+            <li><a class="paper" href="https://link.springer.com/article/10.1007/s10588-022-09371-2" target="_blank" rel="noopener"><span class="paper__t">Coordinating narratives framework for cross-platform analysis of the 2021 US Capitol riots</span><span class="paper__v">CMOT 29(3) · 2023</span></a></li>
+            <li><a class="paper" href="https://link.springer.com/article/10.1007/s13278-022-00937-1" target="_blank" rel="noopener"><span class="paper__t">Cross-platform information spread during the January 6th Capitol riots</span><span class="paper__v">SNAM 12(1) · 2022</span></a></li>
+            <li><a class="paper" href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener"><span class="paper__t">Star network motifs on X during COVID-19</span><span class="paper__v">SBP-BRiMS · 2025</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ── papers ───────────────────────────── -->
+<section class="section" id="papers">
+  <div class="wrap">
+    <div class="section__head rv">
+      <span class="label">Selected work</span>
+      <h2 class="section__title">Detection, coordination, simulation, language. <em>Filter by the question, not the year.</em></h2>
+    </div>
 
-             <h2 id="contact">Contact</h2>
-             <p>
-              <p>
-                <a href="https://twitter.com/quarbby" target="_blank">Twitter</a> <br />
-                <a href="https://www.linkedin.com/in/lynnette-ng/" target="_blank">Linkedln</a><br>
-                <a href="https://www.instagram.com/littlebabypenguin/" target="_blank">Instagram</a><br>
-                <a href="https://scholar.google.com.sg/citations?user=qcqOlfMAAAAJ&hl=en" target="_blank">Google Scholar</a></p>
-                Email: lynnetteng AT cmu.edu <br>
-              </p>
+    <div class="filters rv d1" role="group" aria-label="Filter papers by topic">
+      <button class="filter" type="button" data-f="all"  aria-pressed="true">All</button>
+      <button class="filter" type="button" data-f="bots" aria-pressed="false">Bots &amp; detection</button>
+      <button class="filter" type="button" data-f="coord" aria-pressed="false">Coordination</button>
+      <button class="filter" type="button" data-f="sim"  aria-pressed="false">Simulation</button>
+      <button class="filter" type="button" data-f="lang" aria-pressed="false">Language</button>
+    </div>
 
-<!--This is the end -->
+    <ul class="papers rv d2" id="paperList">
+      <li data-t="bots sim"><a class="paper" href="https://www.cambridgescholars.com/product/978-1-0364-7310-5" target="_blank" rel="noopener"><span class="paper__t">Bots, Bias, and Influence: The Hidden Architects of Social Media</span><span class="paper__v">Cambridge Scholars · 2026</span></a></li>
+      <li data-t="sim"><a class="paper" href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener"><span class="paper__t">A formal framework for multi-agent social systems</span><span class="paper__v">arXiv:2605.07069 · 2026</span></a></li>
+      <li data-t="sim bots"><a class="paper" href="https://www.jasss.org/" target="_blank" rel="noopener"><span class="paper__t">BotSim: mitigating the formation of conspiratorial societies with useful bots</span><span class="paper__v">JASSS 29(1) · 2026</span></a></li>
+      <li data-t="sim"><a class="paper" href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener"><span class="paper__t">AuraSight: generating realistic social media data</span><span class="paper__v">CMU-S3D-25-109 · 2025</span></a></li>
+      <li data-t="sim bots"><a class="paper" href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener"><span class="paper__t">Are LLM-powered social media bots realistic?</span><span class="paper__v">SBP-BRiMS · 2025</span></a></li>
+      <li data-t="coord"><a class="paper" href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener"><span class="paper__t">Star network motifs on X during COVID-19</span><span class="paper__v">SBP-BRiMS · 2025</span></a></li>
+      <li data-t="bots"><a class="paper" href="https://link.springer.com/journal/13278" target="_blank" rel="noopener"><span class="paper__t">Assembling a multi-platform ensemble social bot detector, applied to the US 2020 elections</span><span class="paper__v">SNAM 14(1) · 2024</span></a></li>
+      <li data-t="bots coord"><a class="paper" href="https://arxiv.org/abs/2402.14203" target="_blank" rel="noopener"><span class="paper__t">COVID bot versus human disinformation from the Disinformation Dozen on Telegram</span><span class="paper__v">arXiv:2402.14203 · 2024</span></a></li>
+      <li data-t="bots"><a class="paper" href="https://journals.sagepub.com/home/bds" target="_blank" rel="noopener"><span class="paper__t">Cyborgs for strategic communication on social media</span><span class="paper__v">Big Data &amp; Society 11(1) · 2024</span></a></li>
+      <li data-t="bots coord"><a class="paper" href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener"><span class="paper__t">Digital propaganda and conflict rhetoric: bot-driven campaigns and counter-narratives in the Ukraine crisis</span><span class="paper__v">Marigliano, Ng, Carley · 2024</span></a></li>
+      <li data-t="bots"><a class="paper" href="https://ojs.aaai.org/index.php/ICWSM/article/view/22178" target="_blank" rel="noopener"><span class="paper__t">BotBuster: multi-platform bot detection using a mixture of experts</span><span class="paper__v">AAAI ICWSM 17 · 2023</span></a></li>
+      <li data-t="coord bots"><a class="paper" href="https://link.springer.com/article/10.1007/s41109-022-00526-3" target="_blank" rel="noopener"><span class="paper__t">A combined synchronization index for evaluating collective action on social media</span><span class="paper__v">Appl. Netw. Sci. 8(1) · 2023</span></a></li>
+      <li data-t="bots"><a class="paper" href="https://link.springer.com/article/10.1140/epjds/s13688-023-00440-3" target="_blank" rel="noopener"><span class="paper__t">Deflating the Chinese balloon: types of Twitter bots in the US–China balloon incident</span><span class="paper__v">EPJ Data Science 12 · 2023</span></a></li>
+      <li data-t="lang sim"><a class="paper" href="https://ieeexplore.ieee.org/document/9862989" target="_blank" rel="noopener"><span class="paper__t">Pro or anti? A social influence model of online stance flipping</span><span class="paper__v">IEEE TNSE 10(1) · 2022</span></a></li>
+      <li data-t="coord"><a class="paper" href="https://link.springer.com/article/10.1007/s10588-022-09371-2" target="_blank" rel="noopener"><span class="paper__t">Coordinating narratives framework for cross-platform analysis of the 2021 US Capitol riots</span><span class="paper__v">CMOT 29(3) · 2023</span></a></li>
+      <li data-t="coord"><a class="paper" href="https://link.springer.com/article/10.1007/s13278-022-00937-1" target="_blank" rel="noopener"><span class="paper__t">Cross-platform information spread during the January 6th Capitol riots</span><span class="paper__v">SNAM 12(1) · 2022</span></a></li>
+      <li data-t="lang"><a class="paper" href="https://www.sciencedirect.com/science/article/pii/S0306457322001728" target="_blank" rel="noopener"><span class="paper__t">Is my stance the same as your stance? A cross-validation study of stance detection datasets</span><span class="paper__v">Inf. Processing &amp; Management · 2022</span></a></li>
+      <li data-t="lang"><a class="paper" href="https://dl.acm.org/doi/abs/10.1145/3487351.3488276" target="_blank" rel="noopener"><span class="paper__t">Will you dance to the challenge? Predicting user participation in TikTok challenges</span><span class="paper__v">ASONAM · 2021</span></a></li>
+    </ul>
+
+    <p class="count rv d3"><span id="showing">18</span> of 18 shown · <a href="https://quarbby.github.io/pub.html">full list</a> · <a href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener">Google Scholar</a></p>
+  </div>
+</section>
+
+<!-- ── book ─────────────────────────────── -->
+<section class="section" id="book">
+  <div class="wrap">
+    <div class="section__head rv">
+      <span class="label">The thesis</span>
+      <h2 class="section__title">My thesis was called <em>Foundations of Cyber Social Agents</em>. Part of it became a book.</h2>
+    </div>
+
+    <div class="book rv d1">
+      <div>
+        <h3 class="book__title">Bots, Bias, and Influence<br><i>The Hidden Architects of Social Media</i></h3>
+        <p>
+          Published by Cambridge Scholars. It takes
+          the machinery of automated accounts — how they are built, how they are
+          found, what they do to a conversation once they are inside it — and puts it
+          in front of readers who don't run network analysis for a living.
+        </p>
+        <p style="color:var(--muted);font-size:1.02rem;">Reviewing it, or teaching from it? Ask me for a discount code.</p>
+        <div class="linkrow">
+          <a class="pill" href="https://www.cambridgescholars.com/product/978-1-0364-7310-5" target="_blank" rel="noopener">Publisher</a>
+          <a class="pill" href="https://www.amazon.com/gp/product/1036473104" target="_blank" rel="noopener">Amazon</a>
+          <a class="pill" href="https://quarbby.github.io/research/thesis.html">The thesis</a>
+          <a class="pill" href="mailto:lynnetteng@cmu.edu?subject=Bots%2C%20Bias%20and%20Influence">Ask for a discount code, either way</a>
+        </div>
+      </div>
+      <div>
+        <pre class="cite">@book{ng2026bots,
+  title     = {Bots, Bias, and Influence:
+               The Hidden Architects of Social Media},
+  author    = {Ng, L.H.X. and Carley, K.M.},
+  isbn      = {9781036473112},
+  year      = {2026},
+  publisher = {Cambridge Scholars Publishing}
+}</pre>
+        <p style="font-size:0.92rem;color:var(--dim);margin:0;">Cite it. That's what it's there for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── log ──────────────────────────────── -->
+<section class="section" id="log">
+  <div class="wrap">
+    <div class="section__head rv">
+      <span class="label">Signal log</span>
+      <h2 class="section__title">When the work leaves the lab and turns up <em>somewhere else</em>.</h2>
+    </div>
+
+    <ul class="log rv d1">
+      <li><a class="log__row" href="https://calendar.pitt.edu/event/simulating-social-media-bot-personas-with-llm-augmented-agent-based-models" target="_blank" rel="noopener"><span class="log__d">Jan 2026</span><span class="log__t">Simulating social media bot personas with LLM-augmented agent-based models</span><span class="log__s">Pitt CS Colloquium</span></a></li>
+      <li><a class="log__row" href="https://www.channelnewsasia.com/commentary/x-account-transparency-user-location-maga-account-5563741" target="_blank" rel="noopener"><span class="log__d">Dec 2025</span><span class="log__t">X's account transparency features confirmed what many already suspected</span><span class="log__s">Channel News Asia</span></a></li>
+      <li><a class="log__row" href="https://youtu.be/qWK47sqLmJQ" target="_blank" rel="noopener"><span class="log__d">Nov 2025</span><span class="log__t">Is the internet really dead?</span><span class="log__s">NewsPress · video</span></a></li>
+      <li><a class="log__row" href="https://www.duq.edu/research/centers-and-institutes/grefenstette-center/grefenstette-symposium.php" target="_blank" rel="noopener"><span class="log__d">Oct 2024</span><span class="log__t">Best Poster Award, Grefenstette Center Tech Ethics Symposium</span><span class="log__s">Award</span></a></li>
+      <li><a class="log__row" href="https://github.com/quarbby/BotBuster-Universe" target="_blank" rel="noopener"><span class="log__d">Sep 2024</span><span class="log__t">The BotBuster Universe — conference tutorial</span><span class="log__s">SBP-BRiMS</span></a></li>
+      <li><a class="log__row" href="https://www.newscientist.com/article/2414259-armies-of-bots-battled-on-twitter-over-chinese-spy-balloon-incident/" target="_blank" rel="noopener"><span class="log__d">Aug 2023</span><span class="log__t">Armies of bots fought each other over the Chinese balloon incident</span><span class="log__s">New Scientist</span></a></li>
+      <li><a class="log__row" href="https://www.cs.cmu.edu/news/2023/stance-detection-models" target="_blank" rel="noopener"><span class="log__d">Aug 2023</span><span class="log__t">Standardised dataset annotations could help detect social media sentiment</span><span class="log__s">CMU SCS</span></a></li>
+      <li><a class="log__row" href="https://www.scientificamerican.com/article/false-headlines-plausibility-belief/" target="_blank" rel="noopener"><span class="log__d">Mar 2023</span><span class="log__t">On the patterns behind misinformation and disinformation</span><span class="log__s">Scientific American</span></a></li>
+      <li><a class="log__row" href="https://www.inverse.com/input/culture/tiktok-challenges-virality-study-renegade-charli-damelio-bored-in-the-house" target="_blank" rel="noopener"><span class="log__d">Jan 2022</span><span class="log__t">Have researchers cracked the code to TikTok virality?</span><span class="log__s">Input Magazine</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── credentials ──────────────────────── -->
+<section class="section section--tight">
+  <div class="wrap">
+    <dl class="creds rv">
+      <div><dt>Doctorate</dt><dd>Societal Computing, School of Computer Science, Carnegie Mellon University. Advised by Kathleen Carley.</dd></div>
+      <div><dt>Before that</dt><dd>BComp in Computer Science, National University of Singapore, where I won the NUSS Medal for Outstanding Achievement.</dd></div>
+      <div><dt>Taught</dt><dd>Dynamic Network Analysis (17-801).  <br>  Computational Modeling of Complex Socio-Technical Systems (17-821). <br> CASOS Summer Institute.
+        <br> Tutorial "The BotBuster Universe" at SBP-BRiMS 2024.
+      </dd></div>
+      <div><dt>Service</dt><dd>Programme committee for AAAI and the CySoC workshop at ICWSM. I review for PLOS One, Scientific Reports, AI &amp; Society, SNAM, IP&amp;M and JCSS.<br> Programme committee for Social Simulation workshop at COLM.</dd></div>
+      <div><dt>Methods</dt><dd>Network science. Computational social science. Natural language processing.</dd></div>
+      <div><dt>Open to</dt><dd>Applied graph theory, social media analysis, multi-agent social systems — and ideas that don't obviously fit any of them.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ── contact ──────────────────────────── -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="section__head rv">
+      <span class="label">Write to me</span>
+      <!-- <h2 class="section__title"><em>Send the email.</em></h2> -->
+    </div>
+
+    <div class="contact rv d1">
+      <div>
+        <a class="mail" href="mailto:lynnetteng@cmu.edu">lynnetteng@cmu.edu</a>
+        <p>
+          Email me even when the idea doesn't obviously fit my research interests.
+          Network science, social media analysis, multi-agent social systems — and
+          whatever you think might be adjacent. I welcome a chat either way.
+        </p>
+        <div class="linkrow" style="margin-top:1.6rem;">
+          <a class="pill" href="https://quarbby.github.io/pdfs/2026_resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+          <a class="pill" href="https://quarbby.github.io/pdfs/2026_research_statement.pdf" target="_blank" rel="noopener">Research statement (PDF)</a>
+          <a class="pill" href="https://quarbby.github.io/pdfs/2026_thesis.pdf" target="_blank" rel="noopener">Thesis (PDF)</a>
+        </div>
+      </div>
+
+      <ul class="elsewhere">
+        <li><a href="https://scholar.google.com/citations?user=qcqOlfMAAAAJ" target="_blank" rel="noopener">Google Scholar <span>Papers</span></a></li>
+        <li><a href="https://github.com/quarbby" target="_blank" rel="noopener">quarbby <span>GitHub</span></a></li>
+        <li><a href="https://twitter.com/quarbby" target="_blank" rel="noopener">@quarbby <span>X</span></a></li>
+        <li><a href="https://www.linkedin.com/in/lynnette-ng/" target="_blank" rel="noopener">lynnette-ng <span>LinkedIn</span></a></li>
+        <li><a href="https://quarbby.github.io/" target="_blank" rel="noopener">quarbby.github.io <span>My own site</span></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <a href="https://quarbby.github.io/">Home</a>
+    <a href="https://quarbby.github.io/blog.html">Blog</a>
+    <a href="https://quarbby.github.io/resources.html">Talks &amp; resources</a>
+    <a href="https://quarbby.github.io/pub.html">Publications</a>
+    <a href="https://quarbby.github.io/research.html">Research</a>
+    <a href="#top">Top</a>
+    <span class="foot__note">Language · Agents · Networks — Information Programme Center, DSTA, Singapore</span>
+  </div>
+</footer>
+
+<div class="hud" id="hud">
+  <div class="hud__in">
+    <div class="bay bay--map">
+      <span class="bay__k">Map</span>
+      <div class="map" id="map"></div>
+    </div>
+
+    <div class="bay bay--res">
+      <span class="bay__k">Stock</span>
+      <div class="res">
+        <div>
+          <svg width="11" height="13" viewBox="0 0 11 13" aria-hidden="true"><path d="M5.5 0 11 4.4 8.6 13H2.4L0 4.4Z" fill="var(--agent)" opacity=".85"/></svg>
+          <b>18</b><span>papers</span>
+        </div>
+        <div>
+          <svg width="11" height="13" viewBox="0 0 11 13" aria-hidden="true"><rect x="1.5" y="2.5" width="8" height="9" rx="1.6" fill="none" stroke="var(--human)" stroke-width="1.4"/><rect x="3.6" y="0.4" width="3.8" height="2.4" rx="1" fill="var(--human)"/></svg>
+          <b>4</b><span>platforms</span>
+        </div>
+        <div>
+          <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5.6" fill="none" stroke="var(--agent)" stroke-width="1.3" opacity=".85"/><circle cx="6.5" cy="6.5" r="1.9" fill="var(--agent)"/></svg>
+          <b>8</b><span>roles</span>
+        </div>
+        <div>
+          <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><path d="M1 11 6.5 1.5 12 11Z" fill="none" stroke="var(--human)" stroke-width="1.3"/></svg>
+          <b>7</b><span>biases</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bay bay--keys">
+      <span class="bay__k">Hotkeys</span>
+      <div class="keys">
+        <button type="button" data-key="1" aria-label="Station one"><kbd>1</kbd></button>
+        <button type="button" data-key="2" aria-label="Station two"><kbd>2</kbd></button>
+        <button type="button" data-key="3" aria-label="Station three"><kbd>3</kbd></button>
+        <em>stations</em>
+        <button type="button" data-key="c" aria-label="Toggle coordination"><kbd>C</kbd></button>
+        <em>coordination</em>
+        <button type="button" data-key="0" aria-label="Back to top"><kbd>0</kbd></button>
+        <em>top</em>
+      </div>
+    </div>
+  </div>
 </div>
 
- </div>
+<script>
+(function(){
+"use strict";
 
-</div>
+var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function rnd(a,b){ return a + Math.random()*(b-a); }
+function lerp(a,b,t){ return a + (b-a)*t; }
 
-<br><br><br>
- <footer>
-  <hr>
-            <div style="text-align:center">
-              Lynnette Hui Xian NG<br>
-            </a>
-            </div>
-            
-            <!-- /.row -->
-        </footer>    
+/* Palette bridge — canvases read their colours from the CSS tokens, so the
+   light and dark skins stay in step without duplicating any drawing code. */
+var P = { agent:[107,184,255], human:[242,180,65], dim:[131,153,169],
+          paper:[230,237,242], mute:[160,178,192], deep:[78,94,107] };
+function readPalette(){
+  var cs = getComputedStyle(document.documentElement);
+  [["agent","--agent-rgb"],["human","--human-rgb"],["dim","--dim-rgb"],
+   ["paper","--paper-rgb"],["mute","--mute-rgb"],["deep","--deep-rgb"]]
+  .forEach(function(pair){
+    var v = cs.getPropertyValue(pair[1]).trim();
+    if(!v) return;
+    var n = v.split(",").map(function(x){ return parseFloat(x); });
+    if(n.length === 3 && n.every(function(x){ return isFinite(x); })) P[pair[0]] = n;
+  });
+}
+readPalette();
+function A(c,a){ return "rgba("+Math.round(c[0])+","+Math.round(c[1])+","+Math.round(c[2])+","+a+")"; }
+function MIX(c1,c2,t,a){
+  return "rgba("+Math.round(lerp(c1[0],c2[0],t))+","+Math.round(lerp(c1[1],c2[1],t))+","+
+         Math.round(lerp(c1[2],c2[2],t))+","+a+")";
+}
+
+/* intro */
+requestAnimationFrame(function(){
+  document.getElementById("heroWrap").classList.add("is-lit");
+});
+
+/* ── clock ─────────────────────────────── */
+var clockEl = document.getElementById("clock");
+function tickClock(){
+  clockEl.textContent = new Date().toLocaleTimeString("en-GB",{
+    timeZone:"Asia/Singapore", hour12:false, hour:"2-digit", minute:"2-digit", second:"2-digit"
+  });
+}
+tickClock(); setInterval(tickClock,1000);
+
+/* ── scroll progress + nav state ───────── */
+var prog = document.getElementById("prog");
+var navLinks = Array.prototype.slice.call(document.querySelectorAll(".bar__nav a"));
+var targets = navLinks.map(function(a){ return document.querySelector(a.getAttribute("href")); });
+function onScroll(){
+  var h = document.documentElement;
+  var p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
+  prog.style.width = (p*100).toFixed(2) + "%";
+  var y = h.scrollTop + h.clientHeight*0.32, best = -1;
+  for(var i=0;i<targets.length;i++){
+    if(targets[i] && targets[i].offsetTop <= y) best = i;
+  }
+  navLinks.forEach(function(a,i){ a.classList.toggle("is-here", i===best); });
+}
+window.addEventListener("scroll", onScroll, {passive:true});
+onScroll();
+
+/* ── reveal on scroll ──────────────────── */
+var revealObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting){ en.target.classList.add("in"); revealObs.unobserve(en.target); }
+  });
+}, {rootMargin:"0px 0px -12% 0px", threshold:0.08});
+document.querySelectorAll(".rv").forEach(function(el){ revealObs.observe(el); });
+
+/* ── counters ──────────────────────────── */
+var statObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(!en.isIntersecting) return;
+    statObs.unobserve(en.target);
+    en.target.querySelectorAll("[data-to]").forEach(function(el){
+      var to = +el.getAttribute("data-to");
+      if(reduce){ el.textContent = to; return; }
+      var t0 = performance.now(), dur = 900 + to*18;
+      (function step(t){
+        var k = Math.min(1,(t-t0)/dur);
+        var e = 1 - Math.pow(1-k,3);
+        el.textContent = Math.round(to*e);
+        if(k<1) requestAnimationFrame(step);
+      })(t0);
+    });
+  });
+},{threshold:0.3});
+statObs.observe(document.getElementById("stats"));
+
+/* pause offscreen work */
+function whenVisible(el, start, stop){
+  var running = false;
+  new IntersectionObserver(function(en){
+    var vis = en[0].isIntersecting;
+    if(vis && !running){ running = true; start(); }
+    else if(!vis && running){ running = false; stop(); }
+  },{threshold:0.05}).observe(el);
+}
+function loop(fn){
+  var id = null;
+  return {
+    start:function(){ if(id) return; (function tick(){ fn(); id = requestAnimationFrame(tick); })(); },
+    stop:function(){ if(id) cancelAnimationFrame(id); id = null; }
+  };
+}
+function fitCanvas(cv){
+  var r = cv.getBoundingClientRect();
+  var dpr = Math.min(window.devicePixelRatio||1, 2);
+  cv.width = Math.round(r.width*dpr);
+  cv.height = Math.round(r.height*dpr);
+  var c = cv.getContext("2d");
+  c.setTransform(dpr,0,0,dpr,0,0);
+  return {w:r.width, h:r.height, ctx:c};
+}
+
+/* Trace plot */
+(function(){
+  var cv=document.getElementById("trace-cv"), ctx=cv.getContext("2d");
+  var btn=document.getElementById("revealBtn");
+  var mAll=document.getElementById("mAll"), mFlag=document.getElementById("mFlag"), mCount=document.getElementById("mCount");
+  var mFlagWrap=document.getElementById("mFlagWrap"), mCountWrap=document.getElementById("mCountWrap");
+
+  var WIN=30, TOL=0.15;
+  var accounts=[], campaigns=[], nextCampaign=0, rows=0, W=0, H=0;
+  var revealed=false, reveal=0;
+
+  function build(){
+    rows = W<620 ? 30 : 48;
+    accounts=[];
+    var need=Math.round(rows*0.28), picked={}, c=0;
+    while(c<need){ var r=Math.floor(Math.random()*rows); if(!picked[r]){picked[r]=true;c++;} }
+    for(var i=0;i<rows;i++) accounts.push({coord:!!picked[i],events:[],next:rnd(0,3)});
+    campaigns=[]; nextCampaign=rnd(0.5,2);
+  }
+  function advance(now){
+    while(nextCampaign < now+1){
+      var t=nextCampaign; campaigns.push(t);
+      for(var i=0;i<accounts.length;i++){
+        var a=accounts[i];
+        if(a.coord && Math.random()<0.88) a.events.push(t+rnd(-0.09,0.09));
+      }
+      nextCampaign = t + rnd(2.1,3.4);
+    }
+    for(var j=0;j<accounts.length;j++){
+      var acc=accounts[j], mean = acc.coord?6.5:2.7;
+      while(acc.next < now+1){
+        acc.events.push(acc.next);
+        acc.next += -Math.log(1-Math.random())*mean;
+      }
+      acc.events.sort(function(p,q){return p-q;});
+      var cut = now-WIN-1;
+      while(acc.events.length && acc.events[0]<cut) acc.events.shift();
+    }
+    while(campaigns.length && campaigns[0] < now-WIN-1) campaigns.shift();
+  }
+  function inWin(acc,now){
+    var out=[];
+    for(var i=0;i<acc.events.length;i++){
+      var t=acc.events[i];
+      if(t<=now && t>=now-WIN) out.push(t);
+    }
+    return out;
+  }
+  function pairSync(a,b,now){
+    var ea=inWin(a,now), eb=inWin(b,now);
+    if(ea.length<3||eb.length<3) return 0;
+    var hits=0,k=0;
+    for(var i=0;i<ea.length;i++){
+      while(k<eb.length-1 && eb[k]<ea[i]-TOL) k++;
+      for(var m=k;m<eb.length && eb[m]<=ea[i]+TOL;m++){
+        if(Math.abs(eb[m]-ea[i])<=TOL){ hits++; break; }
+      }
+    }
+    return hits/Math.min(ea.length,eb.length);
+  }
+  function measure(now){
+    var all=0,an=0;
+    for(var s=0;s<200;s++){
+      var i=Math.floor(Math.random()*accounts.length), j=Math.floor(Math.random()*accounts.length);
+      if(i===j) continue;
+      all+=pairSync(accounts[i],accounts[j],now); an++;
+    }
+    var idx=[];
+    for(var k=0;k<accounts.length;k++) if(accounts[k].coord) idx.push(k);
+    var cl=0,cn=0;
+    for(var p=0;p<idx.length;p++) for(var q=p+1;q<idx.length;q++){
+      cl+=pairSync(accounts[idx[p]],accounts[idx[q]],now); cn++;
+    }
+    mAll.textContent=(an?all/an:0).toFixed(2);
+    mFlag.textContent=(cn?cl/cn:0).toFixed(2);
+    mCount.textContent=idx.length+" / "+accounts.length;
+  }
+  function resize(){
+    var f=fitCanvas(cv); W=f.w; H=f.h;
+    var was=rows; rows = W<620?30:48;
+    if(rows!==was || !accounts.length) build();
+  }
+  function draw(now){
+    ctx.clearRect(0,0,W,H);
+    var pad=3, band=(H-pad*2)/rows;
+    if(reveal>0.01){
+      ctx.strokeStyle=A(P.agent,(0.16*reveal).toFixed(3)); ctx.lineWidth=1;
+      for(var c=0;c<campaigns.length;c++){
+        var xc=W-((now-campaigns[c])/WIN)*W;
+        if(xc<0||xc>W) continue;
+        ctx.beginPath(); ctx.moveTo(Math.round(xc)+0.5,pad); ctx.lineTo(Math.round(xc)+0.5,H-pad); ctx.stroke();
+      }
+    }
+    for(var i=0;i<accounts.length;i++){
+      var a=accounts[i], y=pad+(i+0.5)*band, th=Math.max(3,Math.min(7,band*0.62)), col;
+      if(a.coord && reveal>0.01){
+        ctx.fillStyle=A(P.agent,(0.07*reveal).toFixed(3));
+        ctx.fillRect(0,y-th/2-1,W,th+2);
+      }
+      if(a.coord){
+        col=MIX(P.dim,P.agent,reveal,"").slice(0,-1);
+      }else{
+        var k=reveal*0.9;
+        col=MIX(P.dim,P.human,k,"").slice(0,-1);
+      }
+      for(var e=0;e<a.events.length;e++){
+        var t=a.events[e];
+        if(t>now||t<now-WIN) continue;
+        var age=(now-t)/WIN, x=W-age*W;
+        var al=(a.coord?0.55+0.4*reveal:0.42+0.18*reveal)*(1-age*0.55);
+        ctx.fillStyle=col+al.toFixed(3)+")";
+        ctx.fillRect(Math.round(x)-1,y-th/2,2,th);
+      }
+    }
+    ctx.fillStyle=A(P.paper,0.18); ctx.fillRect(W-1,0,1,H);
+  }
+
+  var t0=performance.now()/1000, lastM=0;
+  var runner=loop(function(){
+    var now=performance.now()/1000-t0+WIN;
+    reveal += ((revealed?1:0)-reveal)*0.08;
+    advance(now); draw(now);
+    if(now-lastM>0.6){ measure(now); lastM=now; }
+  });
+  function still(){
+    var now=WIN; advance(now+0.001); reveal=revealed?1:0; draw(now); measure(now);
+  }
+
+  btn.addEventListener("click",function(){
+    revealed=!revealed;
+    btn.setAttribute("aria-pressed",String(revealed));
+    btn.textContent = revealed ? "Hide coordination" : "Reveal coordination";
+    mFlagWrap.classList.toggle("is-on",revealed);
+    mCountWrap.classList.toggle("is-on",revealed);
+    if(reduce) still();
+  });
+
+  resize();
+  window.addEventListener("resize",function(){ resize(); if(reduce) still(); });
+  window.addEventListener("themechange",function(){ readPalette(); if(reduce) still(); });
+  if(reduce) still(); else whenVisible(cv, runner.start, runner.stop);
+})();
+
+/* Station 1 feed */
+(function(){
+  var feed=document.getElementById("feed");
+  var seenEl=document.getElementById("feedSeen"), botsEl=document.getElementById("feedBots");
+  var host=document.querySelector('[data-screen="feed"]');
+  var words=["night","copper","lumen","tundra","argos","vellum","sparrow","kiln","harbor","ferrous","juniper","cobalt","marram","quill","thicket","ember","salt","fathom"];
+  var plats=["x","reddit","telegram","instagram"];
+  var seen=0, bots=0, timer=null;
+
+  function handle(){
+    var w=words[Math.floor(Math.random()*words.length)];
+    var n=Math.floor(rnd(10,9999));
+    return "@"+w+n;
+  }
+  function row(){
+    var botprob = Math.random()<0.34 ? rnd(0.62,0.97) : rnd(0.03,0.41);
+    var isBot = botprob>0.5;
+    var el=document.createElement("div");
+    el.className="feed__row";
+    el.innerHTML =
+      '<span class="feed__id">'+handle()+' <span style="opacity:.5">'+plats[Math.floor(Math.random()*plats.length)]+'</span></span>'+
+      '<span class="feed__meter"><i class="'+(isBot?"b":"h")+'"></i></span>'+
+      '<span class="feed__verdict '+(isBot?"b":"h")+'">'+(isBot?"auto":"human")+'</span>';
+    feed.insertBefore(el, feed.firstChild);
+    var bar=el.querySelector("i");
+    requestAnimationFrame(function(){
+      bar.style.width = Math.round((isBot?botprob:1-botprob)*100)+"%";
+    });
+    while(feed.children.length>7) feed.removeChild(feed.lastChild);
+    seen++; if(isBot) bots++;
+    seenEl.textContent=seen; botsEl.textContent=bots;
+  }
+  for(var i=0;i<7;i++) row();
+  whenVisible(host,
+    function(){ if(!timer && !reduce) timer=setInterval(row,1500); },
+    function(){ clearInterval(timer); timer=null; }
+  );
+})();
+
+/* Station 2 simulation */
+(function(){
+  var cv=document.getElementById("sim-cv");
+  var adoptEl=document.getElementById("simAdopt"), botsEl=document.getElementById("simBots"), btn=document.getElementById("simBtn");
+  var W=0,H=0,ctx=null,agents=[],useful=0,R=29;
+
+  function seed(){
+    var f=fitCanvas(cv); W=f.w; H=f.h; ctx=f.ctx;
+    var n = W<520 ? 110 : 170;
+    agents=[]; useful=0;
+    for(var i=0;i<n;i++){
+      agents.push({
+        x:rnd(0,W), y:rnd(0,H), vx:rnd(-0.25,0.25), vy:rnd(-0.25,0.25),
+        b: i<Math.max(3,Math.round(n*0.04)) ? 1 : 0,
+        fixed: i<Math.max(3,Math.round(n*0.04)),
+        good:false
+      });
+    }
+    botsEl.textContent="0";
+    btn.textContent="Release useful bots";
+  }
+  function release(){
+    if(useful){ seed(); return; }
+    var n = W<520 ? 12 : 18;
+    for(var i=0;i<n;i++){
+      agents.push({x:rnd(0,W),y:rnd(0,H),vx:rnd(-0.3,0.3),vy:rnd(-0.3,0.3),b:0,fixed:true,good:true});
+    }
+    useful=n; botsEl.textContent=String(n);
+    btn.textContent="Reset the population";
+  }
+  function step(){
+    var i,j,a,b,dx,dy,d2;
+    for(i=0;i<agents.length;i++){
+      a=agents[i];
+      a.x+=a.vx; a.y+=a.vy;
+      if(a.x<0||a.x>W){ a.vx*=-1; a.x=Math.max(0,Math.min(W,a.x)); }
+      if(a.y<0||a.y>H){ a.vy*=-1; a.y=Math.max(0,Math.min(H,a.y)); }
+    }
+    for(i=0;i<agents.length;i++){
+      a=agents[i]; if(a.fixed) continue;
+      for(j=0;j<agents.length;j++){
+        if(i===j) continue;
+        b=agents[j];
+        dx=a.x-b.x; dy=a.y-b.y; d2=dx*dx+dy*dy;
+        if(d2>R*R) continue;
+        a.b += (b.good?0.075:0.024)*(b.b-a.b);
+      }
+      if(a.b<0) a.b=0; if(a.b>1) a.b=1;
+    }
+    var above=0,total=0;
+    for(i=0;i<agents.length;i++){ if(agents[i].good) continue; total++; if(agents[i].b>0.5) above++; }
+    adoptEl.textContent = Math.round(100*above/Math.max(1,total))+"%";
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var i,a;
+    ctx.lineWidth=1;
+    for(i=0;i<agents.length;i++){
+      a=agents[i];
+      if(a.good){
+        ctx.strokeStyle=A(P.human,0.85);
+        ctx.beginPath(); ctx.arc(a.x,a.y,4,0,6.283); ctx.stroke();
+        continue;
+      }
+      var t=a.b;
+      ctx.fillStyle=MIX(P.deep,P.agent,t,(0.35+0.6*t).toFixed(2));
+      ctx.beginPath(); ctx.arc(a.x,a.y, a.fixed?3.2:2.4, 0, 6.283); ctx.fill();
+    }
+  }
+  var runner=loop(function(){ step(); draw(); });
+  seed();
+  if(reduce){ for(var k=0;k<160;k++) step(); draw(); }
+  btn.addEventListener("click",function(){ release(); if(reduce){ draw(); } });
+  window.addEventListener("resize",function(){ seed(); draw(); });
+  window.addEventListener("themechange",function(){ readPalette(); draw(); });
+  if(!reduce) whenVisible(cv, runner.start, runner.stop);
+})();
+
+/* Station 3 network */
+(function(){
+  var cv=document.getElementById("net-cv");
+  var nEl=document.getElementById("netN"), hEl=document.getElementById("netH"), btn=document.getElementById("netBtn");
+  var W=0,H=0,ctx=null,nodes=[],edges=[],MAX=64,acc=0,HUB=6;
+
+  function seed(){
+    var f=fitCanvas(cv); W=f.w; H=f.h; ctx=f.ctx;
+    nodes=[]; edges=[]; acc=0;
+    MAX = W<520 ? 44 : 64;
+    for(var i=0;i<3;i++) add();
+  }
+  function add(){
+    var n={x:rnd(W*0.3,W*0.7), y:rnd(H*0.3,H*0.7), vx:0, vy:0, deg:0, born:performance.now()};
+    if(nodes.length){
+      var total=0,k;
+      for(k=0;k<nodes.length;k++) total += nodes[k].deg+1;
+      var pick=Math.random()*total, run=0, target=nodes[0];
+      for(k=0;k<nodes.length;k++){
+        run += nodes[k].deg+1;
+        if(run>=pick){ target=nodes[k]; break; }
+      }
+      var ang=rnd(0,6.283);
+      n.x = target.x + Math.cos(ang)*38;
+      n.y = target.y + Math.sin(ang)*38;
+      edges.push([target,n]); target.deg++; n.deg++;
+    }
+    nodes.push(n);
+  }
+  /* force relaxation */
+  function relax(){
+    var i,j,a,b,dx,dy,d,f;
+    var cx=W/2, cy=H/2, m=12;
+    for(i=0;i<nodes.length;i++){
+      a=nodes[i];
+      for(j=i+1;j<nodes.length;j++){
+        b=nodes[j];
+        dx=a.x-b.x; dy=a.y-b.y;
+        d=Math.sqrt(dx*dx+dy*dy)||0.01;
+        if(d>90) continue;
+        f=(90-d)/d*0.035;
+        a.vx+=dx*f; a.vy+=dy*f; b.vx-=dx*f; b.vy-=dy*f;
+      }
+    }
+    for(i=0;i<edges.length;i++){
+      a=edges[i][0]; b=edges[i][1];
+      dx=b.x-a.x; dy=b.y-a.y;
+      d=Math.sqrt(dx*dx+dy*dy)||0.01;
+      f=(d-52)/d*0.02;
+      a.vx+=dx*f; a.vy+=dy*f; b.vx-=dx*f; b.vy-=dy*f;
+    }
+    for(i=0;i<nodes.length;i++){
+      a=nodes[i];
+      a.vx += (cx-a.x)*0.0016; a.vy += (cy-a.y)*0.0022;
+      a.vx*=0.84; a.vy*=0.84;
+      a.x+=a.vx; a.y+=a.vy;
+      if(a.x<m){ a.x=m; a.vx=Math.abs(a.vx)*0.4; }
+      if(a.x>W-m){ a.x=W-m; a.vx=-Math.abs(a.vx)*0.4; }
+      if(a.y<m){ a.y=m; a.vy=Math.abs(a.vy)*0.4; }
+      if(a.y>H-m){ a.y=H-m; a.vy=-Math.abs(a.vy)*0.4; }
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var i,e,hubs=0;
+    for(i=0;i<nodes.length;i++) if(nodes[i].deg>=HUB) hubs++;
+    ctx.lineWidth=1;
+    for(i=0;i<edges.length;i++){
+      e=edges[i];
+      var isHub = e[0].deg>=HUB || e[1].deg>=HUB;
+      ctx.strokeStyle = isHub ? A(P.agent,0.45) : A(P.dim,0.16);
+      ctx.beginPath(); ctx.moveTo(e[0].x,e[0].y); ctx.lineTo(e[1].x,e[1].y); ctx.stroke();
+    }
+    for(i=0;i<nodes.length;i++){
+      var n=nodes[i], age=Math.min(1,(performance.now()-n.born)/600);
+      var hub=n.deg>=HUB;
+      ctx.fillStyle = hub ? A(P.agent,0.95) : A(P.mute,0.6);
+      ctx.beginPath(); ctx.arc(n.x,n.y,(hub?4.2:2.2)*age,0,6.283); ctx.fill();
+      if(hub){
+        ctx.strokeStyle=A(P.agent,0.22);
+        ctx.beginPath(); ctx.arc(n.x,n.y,10+2*Math.sin(performance.now()/600+i),0,6.283); ctx.stroke();
+      }
+    }
+    nEl.textContent=nodes.length; hEl.textContent=hubs;
+  }
+  var runner=loop(function(){
+    acc++;
+    if(acc%16===0 && nodes.length<MAX) add();
+    relax(); draw();
+  });
+  seed();
+  if(reduce){ while(nodes.length<MAX) add(); for(var z=0;z<220;z++) relax(); draw(); }
+  btn.addEventListener("click",function(){
+    seed();
+    if(reduce){ while(nodes.length<MAX) add(); for(var z=0;z<220;z++) relax(); draw(); }
+  });
+  window.addEventListener("resize",function(){ seed(); draw(); });
+  window.addEventListener("themechange",function(){ readPalette(); draw(); });
+  if(!reduce) whenVisible(cv, runner.start, runner.stop);
+})();
+
+/* Paper filter */
+(function(){
+  var btns=Array.prototype.slice.call(document.querySelectorAll(".filter"));
+  var items=Array.prototype.slice.call(document.querySelectorAll("#paperList li"));
+  var showing=document.getElementById("showing");
+  btns.forEach(function(b){
+    b.addEventListener("click",function(){
+      var f=b.getAttribute("data-f");
+      btns.forEach(function(o){ o.setAttribute("aria-pressed", String(o===b)); });
+      var n=0;
+      items.forEach(function(li){
+        var on = f==="all" || li.getAttribute("data-t").split(" ").indexOf(f)>=0;
+        li.hidden=!on; if(on) n++;
+      });
+      showing.textContent=n;
+    });
+  });
+})();
+
+/* Station selection */
+var selectStation = (function(){
+  var bases  = Array.prototype.slice.call(document.querySelectorAll(".base"));
+  var units  = Array.prototype.slice.call(document.querySelectorAll(".unit"));
+  var panels = Array.prototype.slice.call(document.querySelectorAll(".deploy"));
+  var current = 0;
+
+  function apply(n, moveFocus){
+    if(!n || n === current) { if(moveFocus) focusOn(n); return; }
+    current = n;
+    var field = document.getElementById("field");
+    if(field) field.setAttribute("data-sel", String(n));
+    bases.forEach(function(b){
+      var on = +b.getAttribute("data-b") === n;
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", String(on));
+    });
+    units.forEach(function(u){ u.setAttribute("aria-pressed", String(+u.getAttribute("data-u") === n)); });
+    panels.forEach(function(p){ p.hidden = (+p.getAttribute("data-p") !== n); });
+    /* the newly shown canvas was sized zero while hidden */
+    window.dispatchEvent(new Event("resize"));
+    if(moveFocus) focusOn(n);
+  }
+  function focusOn(n){
+    var b = bases.filter(function(x){ return +x.getAttribute("data-b") === n; })[0];
+    if(b) b.focus({preventScroll:true});
+  }
+
+  bases.forEach(function(b){
+    var n = +b.getAttribute("data-b");
+    b.addEventListener("click", function(){ apply(n); });
+    b.addEventListener("keydown", function(e){
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); apply(n); }
+    });
+  });
+  units.forEach(function(u){
+    u.addEventListener("click", function(){ apply(+u.getAttribute("data-u")); });
+  });
+
+  apply(1);
+  return apply;
+})();
+
+/* Map and hotkeys */
+(function(){
+  var mapEl = document.getElementById("map");
+
+  function barH(){
+    var bar = document.querySelector(".bar");
+    return (bar ? bar.getBoundingClientRect().height : 56) + 14;
+  }
+  function scrollToEl(el){
+    if(!el) return;
+    var y = (window.pageYOffset || document.documentElement.scrollTop || 0);
+    var top = el.getBoundingClientRect().top + y - barH();
+    window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+  }
+  function go(sel){ scrollToEl(document.querySelector(sel)); }
+
+  if(mapEl){
+    var marks = [
+      ["#trace","Trace"], ["#universe","BotBuster"], ["#stations","Stations"],
+      ["#papers","Papers"], ["#book","Book"], ["#log","Signal log"], ["#contact","Contact"]
+    ];
+    var segs = [];
+    marks.forEach(function(m){
+      var target = document.querySelector(m[0]);
+      if(!target) return;
+      var b = document.createElement("button");
+      b.type = "button"; b.title = m[1];
+      b.setAttribute("aria-label", "Jump to " + m[1]);
+      b.addEventListener("click", function(){ scrollToEl(target); });
+      mapEl.appendChild(b);
+      segs.push({el:b, target:target, span:1});
+    });
+    var sizeMap = function(){
+      var total = 0, i;
+      for(i=0;i<segs.length;i++){
+        var next = segs[i+1] ? segs[i+1].target.offsetTop : document.body.scrollHeight;
+        segs[i].span = Math.max(60, next - segs[i].target.offsetTop);
+        total += segs[i].span;
+      }
+      for(i=0;i<segs.length;i++) segs[i].el.style.flexGrow = (segs[i].span/total).toFixed(4);
+    };
+    var markMap = function(){
+      var y = document.documentElement.scrollTop + window.innerHeight*0.32, best = 0;
+      for(var i=0;i<segs.length;i++) if(segs[i].target.offsetTop <= y) best = i;
+      for(var j=0;j<segs.length;j++) segs[j].el.setAttribute("aria-current", String(j===best));
+    };
+    sizeMap(); markMap();
+    window.addEventListener("scroll", markMap, {passive:true});
+    window.addEventListener("resize", function(){ sizeMap(); markMap(); });
+  }
+
+  /* every hotkey also exists as a button, so nothing depends on the keyboard */
+  Array.prototype.slice.call(document.querySelectorAll("[data-key]")).forEach(function(b){
+    b.addEventListener("click", function(){ act(b.getAttribute("data-key")); });
+  });
+
+  function act(k){
+    if(k === "1" || k === "2" || k === "3"){
+      selectStation(+k, false);
+      scrollToEl(document.querySelector(".theatre") || document.querySelector("#stations"));
+      return true;
+    }
+    if(k === "0"){
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      return true;
+    }
+    if(k === "c"){
+      var btn = document.getElementById("revealBtn");
+      if(btn){ go("#trace"); btn.click(); }
+      return true;
+    }
+    return false;
+  }
+
+  function onKey(e){
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    var t = e.target;
+    if(t && (t.isContentEditable || /^(input|textarea|select)$/i.test(t.tagName))) return;
+    if(act(String(e.key).toLowerCase())) e.preventDefault();
+  }
+  document.addEventListener("keydown", onKey);
+
+  /* the rail says its own name once, when it first comes into view */
+  (function(){
+    var rail = document.getElementById("hero-rail");
+    if(!rail) return;
+    var said = false;
+    function say(){
+      if(said) return; said = true;
+      setTimeout(function(){ rail.classList.add("is-say"); }, 420);
+      setTimeout(function(){ rail.classList.remove("is-say"); }, 2600);
+    }
+    var lan = document.getElementById("lanWord");
+    if(lan){
+      lan.addEventListener("mouseenter", function(){ rail.classList.add("is-say"); });
+      lan.addEventListener("mouseleave", function(){ rail.classList.remove("is-say"); });
+    }
+    if(reduce){ return; }
+    if("IntersectionObserver" in window){
+      var io = new IntersectionObserver(function(en){
+        en.forEach(function(e){ if(e.isIntersecting){ say(); io.disconnect(); } });
+      }, {threshold:0.6});
+      io.observe(rail);
+    } else { say(); }
+  })();
+
+  /* theme switch — light by default, remembered if the browser lets us */
+  (function(){
+    var root = document.documentElement, tb = document.getElementById("themeBtn");
+    function apply(mode){
+      root.setAttribute("data-theme", mode);
+      if(tb){
+        tb.textContent = (mode === "light") ? "Dark" : "Light";
+        tb.setAttribute("aria-pressed", String(mode === "dark"));
+        tb.setAttribute("aria-label", "Switch to the " + tb.textContent.toLowerCase() + " skin");
+      }
+      if(typeof readPalette === "function") readPalette();
+      window.dispatchEvent(new Event("themechange"));
+      try{ localStorage.setItem("lanshop-theme", mode); }catch(err){}
+    }
+    var saved = null;
+    try{ saved = localStorage.getItem("lanshop-theme"); }catch(err){}
+    apply(saved === "dark" ? "dark" : "light");
+    if(tb) tb.addEventListener("click", function(){
+      apply(root.getAttribute("data-theme") === "light" ? "dark" : "light");
+    });
+  })();
+
+  /* the page may be framed: give it the keyboard as soon as the pointer arrives */
+  function grab(){ try{ window.focus(); }catch(err){} }
+  window.addEventListener("pointerdown", grab);
+  document.addEventListener("mouseenter", grab);
+  window.addEventListener("load", grab);
+})();
+
+})();
+</script>
 </body>
+</html>
