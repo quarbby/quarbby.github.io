@@ -1,0 +1,124 @@
+# The LAN Shop — Lynnette Hui Xian Ng
+
+> Language, Agents, Networks. The research site of Lynnette Hui Xian Ng
+> (ORCID 0000-0002-2740-7818), covering bot detection, coordinated behaviour,
+> influence operations and multi-agent social systems.
+
+Lynnette Hui Xian Ng is Deputy Head of the Information Programme Center at DSTA
+Singapore and holds a PhD in Societal Computing from Carnegie Mellon University,
+where she was advised by Kathleen M. Carley. Her work asks which accounts on a
+social platform are automated, what roles they play, how groups of accounts
+coordinate, and how such societies can be simulated and governed. She is the
+author of 50 publications between 2014 and 2026, listed in full below.
+
+## Tools she built
+
+- **BotBuster** — multi-platform bot detection using a mixture of experts,
+  across X, Reddit, Instagram and Telegram.
+- **BotSorter** — classifies an account's role rather than bot-or-human:
+  amplifier, announcer, repeater, bridge, cyborg, news, content generator,
+  self-declared bot.
+- **BotBias** — reads a message for the cognitive levers it pulls.
+- **Combined Synchronization Index (CSI)** — scores synchrony at user-pair,
+  user and whole-network level across hashtags, URLs and mentions, with
+  thresholds calibrated from the data rather than fixed by hand.
+- **BotSim** — simulates belief contagion in societies of agents.
+
+## Research programmes
+
+- **Design Of The Agents** — what an agent is, how to detect one, and how
+  agents and humans influence each other.
+- **Simulation** — whether a simulated agent society behaves like a real one,
+  and how such simulations can be validated.
+- **Networks** — measuring one networked structure against another, and
+  telling coordination apart from coincidence.
+
+## Book
+
+*Bots, Bias, and Influence: The Hidden Architects of Social Media*, with
+Kathleen M. Carley. Cambridge Scholars Publishing, 2026. ISBN 9781036473112.
+https://www.cambridgescholars.com/product/978-1-0364-7310-5
+
+## Publications
+
+### Bots and detection
+
+Identifying automated accounts, telling apart the roles they play, and measuring what automation does to a conversation.
+
+- 2026. BotSim: mitigating the formation of conspiratorial societies with useful bots — JASSS 29(1). https://www.jasss.org/
+- 2026. Bots, Bias, and Influence: The Hidden Architects of Social Media — Cambridge Scholars. https://www.cambridgescholars.com/product/978-1-0364-7310-5
+- 2025. A global comparison of social media bot and human characteristics — Scientific Reports. https://www.nature.com/articles/s41598-025-96372-1
+- 2025. Are LLM-powered social media bots realistic? — SBP-BRiMS.
+- 2024. Analyzing digital propaganda and conflict rhetoric: A study on Russia's bot-driven campaigns and counter-narratives during the Ukraine crisis — SNAM 14(1). https://doi.org/10.1007/s13278-024-01322-w
+- 2024. Assembling a multi-platform ensemble social bot detector with applications to US 2020 elections — Social Network Analysis and Mining. https://link.springer.com/article/10.1007/s13278-024-01211-2
+- 2024. COVID bot versus human disinformation from the Disinformation Dozen on Telegram — arXiv:2402.14203. https://arxiv.org/abs/2402.14203
+- 2024. Cyborgs for strategic communication on social media — Big Data and Society. https://journals.sagepub.com/doi/pdf/10.1177/20539517241231275
+- 2024. Digital propaganda and conflict rhetoric: bot-driven campaigns and counter-narratives in the Ukraine crisis — Marigliano, Ng, Carley.
+- 2023. BotBuster: multi-platform bot detection using a mixture of experts — AAAI ICWSM 17. https://ojs.aaai.org/index.php/ICWSM/article/view/22178
+- 2023. Deflating the Chinese balloon: types of Twitter bots in the US–China balloon incident — EPJ Data Science 12. https://link.springer.com/article/10.1140/epjds/s13688-023-00440-3
+- 2023. Tracking China’s Cross-Strait Bot Networks Against Taiwan — SBP-Brims 2023. https://link.springer.com/chapter/10.1007/978-3-031-43129-6_12
+- 2022. Stabilizing a supervised bot detection algorithm: How much data is needed for consistent predictions? — Online Social Networks & Media 28. https://doi.org/10.1016/j.osnem.2022.100198
+- 2021. Active, aggressive, but to little avail: characterizing bot activity during the 2020 Singaporean elections — Computational and Mathematical Organization Theory. https://link.springer.com/article/10.1007/s10588-021-09332-1
+- 2021. Bot-Based Emotion Behavior Differences in Images During Kashmir Black Day Event — SBP-BRiMS 2021. https://link.springer.com/chapter/10.1007%2F978-3-030-80387-2_18
+- 2021. Flipping Stance: Social Influence on Bot's and Non Bot's COVID Vaccine Stance — The Second International MIS2 Workshop: Misinformation and Misbehavior Mining on the Web. https://arxiv.org/abs/2106.11076
+- 2020. Bot Activity in the 2020 Singaporean Elections: A Social Cybersecurity Analysis — 2020 International Conference on Social Computing, Behavioral-Cultural Modeling, & Prediction and Behavior Representation in Modeling and Simulation. http://sbp-brims.org/2020/proceedings/papers/working-papers/SBP-BRiMS_2020_paper_84.pdf
+
+### Coordination and influence operations
+
+Detecting when accounts act together, separating coordination from coincidence, and tracing narratives across platforms.
+
+- 2025. Star network motifs on X during COVID-19 — SBP-BRiMS.
+- 2023. A combined synchronization index for evaluating collective action social media — Applied Network Science. https://link.springer.com/article/10.1007/s41109-022-00526-3
+- 2023. Coordinating narratives framework for cross-platform analysis of the 2021 US Capitol riots — CMOT 29(3). https://link.springer.com/article/10.1007/s10588-022-09371-2
+- 2023. Online to Offline Crossover of White Supremacist Propaganda — WWW Workshop 2023. https://dl.acm.org/doi/abs/10.1145/3543873.3587569
+- 2023. Recruitment promotion via Twitter: A network-centric approach of analyzing community engagement using social identity — ACM Digital Government Research and Practice. https://dl.acm.org/doi/abs/10.1145/3617127
+- 2022. Coordinated through a Web of Images: Analysis of Image-based Influence Operations from China, Iran, Russia, and Venezuela — PhoMemes 2022. http://workshop-proceedings.icwsm.org/abstract?id=2022_43
+- 2022. Cross-platform information spread during the January 6th capitol riots — Social Network Analysis and Mining. https://link.springer.com/article/10.1007/s13278-022-00937-1
+- 2022. From curious hashtags to polarized effect: profiling coordinated actions in indonesian twitter discourse — Social Network Analysis and Mining. https://link.springer.com/article/10.1007/s13278-022-00936-2
+- 2022. Investigating the spread of Russian disinformation about biolabs in Ukraine on Twitter using social network analysis — IEEE Big Data.
+- 2022. Online Coordination: Methods and Comparative Case Studies of Coordinated Groups across Four Events in the United States — WebSci 2022. https://dl.acm.org/doi/10.1145/3501247.3531542
+- 2021. A Synchronized Action Framework for Responsible Detection of Coordination on Social Media — MAISoN Workshop on Responsible Social media mining. https://arxiv.org/pdf/2105.07454.pdf
+- 2021. Analysing Public Opinion and Misinformation in a COVID-19 Telegram Group Chat — IEEE Internet Computing. https://ieeexplore.ieee.org/document/9291476
+- 2021. How does fake news spread? Understanding pathways of disinformation spread through APIs — Policy & Internet. https://onlinelibrary.wiley.com/doi/full/10.1002/poi3.268
+- 2020. Is this pofma? Analysing public opinion and misinformation in a COVID-19 Telegram group chat — In Workshop Proceedings of the 14th International AAAI Conference on Web and Social Media. http://workshop-proceedings.icwsm.org/abstract?id=2020_12
+
+### Simulation and multi-agent systems
+
+Growing societies of artificial agents, and asking whether a simulated society behaves like a real one.
+
+- 2026. A formal framework for multi-agent social systems — arXiv:2605.07069. https://arxiv.org/abs/2605.07069
+- 2025. AuraSight: generating realistic social media data — CMU-S3D-25-109.
+- 2025. Humanizing machines: Rethinking LLM anthropomorphism through a multi-level framework of design — EMNLP 2025.
+- 2021. CIGLI: Conditional Image Generation from Language & Image — ICCV21 CLVL. https://openaccess.thecvf.com/content/ICCV2021W/CLVL/papers/Lu_CIGLI_Conditional_Image_Generation_From_Language__Image_ICCVW_2021_paper.pdf
+- 2014. Design and Implementation of BumbleBee AUV — In <a href="https://robosub.org/programs/2014/" target="_blank">RoboSub 2014</a>. https://robosub.org/programs/2014/
+
+### Language, stance and discourse
+
+How opinion, stance and hate speech are expressed online, and how well they can be measured.
+
+- 2025. Prompting and Fine-Tuning Open-Sourced Large Language Models for Stance Classification — ACM Transactions of Intelligent Technologies. https://dl.acm.org/doi/10.1145/3725816
+- 2023. It Takes Two to Negotiate: Modeling Social Exchange in Online Multiplayer Games — CSCW 2024. https://arxiv.org/abs/2311.08666
+- 2023. Popping the hood on Chinese balloons: Examining the discourse between U.S. and China-geotagged accounts — First Monday. https://firstmonday.org/ojs/index.php/fm/article/view/13159
+- 2022. How hate speech varies by target identity: a computational analysis — CoNLL. https://aclanthology.org/2022.conll-1.3/
+- 2022. Is my stance the same as your stance? A cross validation study of stance detection datasets — Information Processing & Management. https://www.sciencedirect.com/science/article/pii/S0306457322001728
+- 2022. Pro or Anti? a Social Influence Model of Online Stance Flipping — IEEE Transactions of Network Science and Engineering!. https://ieeexplore.ieee.org/abstract/document/9806336
+- 2021. Will You Dance To The Challenge? Predicting User Participation of TikTok Challenges — ASONAM 2021. https://dl.acm.org/doi/10.1145/3487351.3488276
+- 2021. “The coronavirus is a bioweapon”: classifying coronavirus stories on fact-checking sites — Computational and Mathematical Organization Theory. https://link.springer.com/article/10.1007/s10588-021-09329-w
+- 2020. Cross-Model Image Annotation Platform with Active Learning — arXiV. https://arxiv.org/pdf/2008.02421.pdf
+- 2020. I miss you babe: Analyzing Emotion Dynamics During COVID-19 Pandemic — 4th Workshop on NLP and CSS (NLPCSS'20). https://www.aclweb.org/anthology/2020.nlpcss-1.5.pdf
+- 2020. KOSMOS: Knowledge-graph Oriented Social media and Mainstream media Overview System — arXiV. https://arxiv.org/abs/2012.06209
+- 2020. The Coronavirus is a Bioweapon: Analysing Coronavirus Fact-Checked Stories — 2020 International Conference on Social Computing, Behavioral-Cultural Modeling, & Prediction and Behavior Representation in Modeling and Simulation. http://sbp-brims.org/2020/proceedings/papers/working-papers/SBP-BRiMS_2020_paper_84.pdf
+- 2020. Visualizing Vitriol: Hate Speech and Image Sharing in the 2020 Singaporean Elections — Social-cybersecurity in Times of Crisis and Change. https://www.cmu.edu/ideas-social-cybersecurity/events/2020papers/2020_ideas_hateimagessg_submit.pdf
+- 2015. Predicting Flight Delays with LAMP and a Sliding Window. https://doi.org/10.13140/RG.2.2.33530.11208
+
+## Links
+
+- Site: https://quarbby.github.io/
+- Publications: https://quarbby.github.io/pub.html
+- Research: https://quarbby.github.io/research.html
+- Google Scholar: https://scholar.google.com/citations?user=qcqOlfMAAAAJ
+- ORCID: https://orcid.org/0000-0002-2740-7818
+- GitHub: https://github.com/quarbby
+- LinkedIn: https://www.linkedin.com/in/lynnette-ng/
+
+Contact: lynnetteng@cmu.edu
