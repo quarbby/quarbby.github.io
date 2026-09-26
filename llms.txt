@@ -1,8 +1,9 @@
-# The LAN Shop — Lynnette Hui Xian Ng
+# Lynnette Hui Xian Ng
 
-> Language, Agents, Networks. The research site of Lynnette Hui Xian Ng
-> (ORCID 0000-0002-2740-7818), covering bot detection, coordinated behaviour,
-> influence operations and multi-agent social systems.
+> Personal site of Lynnette Hui Xian Ng (ORCID 0000-0002-2740-7818), covering
+> bot detection, coordinated behaviour, influence operations and multi-agent
+> social systems. She runs The LAN Shop (Language, Agents, Networks), her
+> research lab, at https://quarbby.github.io/lanshop/
 
 Lynnette Hui Xian Ng is Deputy Head of the Information Programme Center at DSTA
 Singapore and holds a PhD in Societal Computing from Carnegie Mellon University,
@@ -111,9 +112,15 @@ How opinion, stance and hate speech are expressed online, and how well they can 
 - 2020. Visualizing Vitriol: Hate Speech and Image Sharing in the 2020 Singaporean Elections — Social-cybersecurity in Times of Crisis and Change. https://www.cmu.edu/ideas-social-cybersecurity/events/2020papers/2020_ideas_hateimagessg_submit.pdf
 - 2015. Predicting Flight Delays with LAMP and a Sliding Window. https://doi.org/10.13140/RG.2.2.33530.11208
 
+## Projects
+
+- AuraSight: https://quarbby.github.io/aurasight-viz
+- A Decade of Bot: https://quarbby.github.io/a-decade-of-bot
+
 ## Links
 
 - Site: https://quarbby.github.io/
+- The LAN Shop: https://quarbby.github.io/lanshop/
 - Publications: https://quarbby.github.io/pub.html
 - Research: https://quarbby.github.io/research.html
 - Google Scholar: https://scholar.google.com/citations?user=qcqOlfMAAAAJ
