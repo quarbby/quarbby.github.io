@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ff8ba5">
+  <meta name="description" content="A quick Bot Buddies side-scrolling game. Choose a buddy, collect their special items, and dodge feed noise.">
+  <title>Bot Buddies · Feed Sprint</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ff8ba5'/%3E%3Ccircle cx='32' cy='32' r='23' fill='white' stroke='%23292534' stroke-width='4'/%3E%3Ccircle cx='24' cy='31' r='3' fill='%23292534'/%3E%3Ccircle cx='40' cy='31' r='3' fill='%23292534'/%3E%3Cpath d='M27 41q5 5 10 0' fill='none' stroke='%23292534' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="navbar container">
+      <a id="author-name" class="alignable pull-left" href="../../index.html">Lynnette Hui Xian <u>NG</u></a>
+      <ul class="alignable pull-right navbar-ul">
+        <li class="alignable pull-right nav-list"><a class="cool-link" href="../../blog.html">Blog</a></li>
+        <li class="alignable pull-right nav-list"><a class="cool-link" href="../../resources.html">Talks &amp; Resources</a></li>
+        <li class="alignable pull-right nav-list"><a class="cool-link" href="../../pub.html">Publications</a></li>
+        <li class="alignable pull-right nav-list"><a class="cool-link" href="../../research.html">Research Interests</a></li>
+      </ul>
+    </div>
+    <div style="clear:both"></div>
+    <hr>
+  </div>
+    <p class="footnote">A Bot Buddies playtest · No account or data collection · <a href="https://botbuddies.co/" target="_blank" rel="noopener noreferrer">Buy the Bot Buddies book</a></p>
+  <main class="shell">
+    <header class="topline"><div class="brand"><span class="brand-icon">✳</span><span>Bot Buddies <small>MINI GAME</small></span></div><span class="game-name">FEED SPRINT</span></header>
+    <div class="game-frame">
+      <div class="hud"><div class="hud-item"><span class="hud-label" id="itemHudLabel">BOT LABELS</span><strong id="signals">0 / 6</strong></div><div class="hud-item"><span class="hud-label">HEARTS</span><strong id="hearts" aria-label="3 hearts">♥ ♥ ♥</strong></div><div class="hud-item"><span class="hud-label">DISTANCE</span><strong id="distance">0%</strong></div><div class="hud-item best"><span class="hud-label">YOUR BEST</span><strong id="best">—</strong></div></div>
+      <div class="buddy-picker"><div class="portrait" id="portrait" aria-hidden="true"></div><div class="buddy-choice"><label for="buddySelect">YOUR BUDDY THIS RUN</label><select id="buddySelect"></select></div><div class="collect-brief"><span>COLLECT</span><strong id="collectTarget">🤖 Bot labels</strong></div><div class="ability-brief"><span>PASSIVE</span><strong id="abilityName">Clear identity</strong><small id="abilityText">Start with one extra heart.</small></div></div>
+      <div class="special-strip"><div><span>POWER · C</span><strong id="specialName">🤖 Declare</strong><small id="specialText">Become untouchable for two seconds.</small></div><div class="charge" id="specialCharge" aria-label="Collect two items to charge power"><i></i><i></i><b id="chargeText">0 / 2</b></div><div class="shot-brief"><span>CLEAR PURPLE · F / J</span><strong id="shotName">🤖 Disclose</strong><b id="ammo">2 charges</b></div></div>
+      <div class="play-legend" aria-label="How to play"><div class="legend-good"><span class="legend-symbol">✦</span><strong>GOLD = TOUCH</strong><span>Run or jump into it to collect</span></div><div class="legend-bad"><span class="legend-symbol">!</span><strong>PURPLE = CLEAR OR JUMP</strong><span>F/J clears it; touching costs ♥</span></div></div>
+      <div class="canvas-wrap"><canvas id="game" width="960" height="540" role="img" aria-label="Side-scrolling game: touch gold, clear purple with F or J, or jump over purple"></canvas><div id="actionPrompt" class="action-prompt" aria-hidden="true"><strong id="promptTitle">F TO DISCLOSE</strong><span id="promptDetail">Get near purple noise to clear it</span></div><div id="powerPrompt" class="action-prompt power-prompt" aria-hidden="true"><strong id="powerTitle">C TO DECLARE</strong><span id="powerDetail">Collect two items to charge</span></div><div id="overlay" class="overlay"><div class="overlay-card"><span class="pill" id="overlayTag">A QUICK MINI GAME</span><h1 id="overlayTitle">Collect gold. Avoid purple.</h1><p id="overlayText">Touch gold to collect it. Press F/J to clear purple or jump over it.</p><button id="startButton" class="start-button" type="button">Start running</button><p class="instructions">Space / ↑ jump · F / J clear purple · X / P pulse · C power</p></div></div></div>
+      <div class="cue" id="cue"><span class="cue-kind" id="cueKind">YOUR QUEST</span><strong id="cueTitle">🤖 Bot label</strong><span id="cueCaption">Show clearly that this account is automated.</span></div>
+      <div class="control-bar"><div class="control-note"><strong id="roleName">Self-Declared</strong><span id="tip">Gold = touch. Purple = F/J clear or jump.</span></div><div class="controls"><button id="jumpButton" type="button" aria-label="Jump, Space or Up Arrow">↑ <span>Jump <small>Space</small></span></button><button id="shootButton" type="button" aria-label="Disclose to clear purple, F or J">➤ <span id="moveButtonLabel">Disclose <small>F / J</small></span></button><button id="pulseButton" type="button" aria-label="Clear nearby noise bubble, X or P">✳ <span>Pulse <small>X / P</small></span></button><button id="specialButton" type="button" aria-label="Use power, C">★ <span>Power <small>C</small></span></button></div></div>
+    </div>
+    <span class="sr-only" id="announcer" aria-live="polite"></span>
+  </main>
+  <footer>
+    <hr>
+    <div style="text-align:center">
+      Lynnette Hui Xian NG<br>
+    </div>
+  </footer>
+  <script type="module" src="./ui.mjs"></script>
+</body>
+</html>
