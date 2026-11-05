@@ -50,6 +50,7 @@
   --plot-line:#18242F; --plot-node:#131C25; --plot-edge:#2C3E4E;
   --plot-ring:#33475A; --plot-stroke:#4A6275; --plot-grid:#1B2733;
   --shade:var(--shade); --deck:var(--deck); --soft:var(--soft);
+  --brand:#C0392B; --brand-rgb:192,57,43;
   --serif:"Newsreader",Georgia,serif;
   --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   --pixel:"Silkscreen","JetBrains Mono",monospace;
@@ -71,6 +72,7 @@
   --plot-line:#D6DEE5; --plot-node:#FFFFFF; --plot-edge:#B4C2CD;
   --plot-ring:#A9B8C4; --plot-stroke:#7B8B99; --plot-grid:#E2E8ED;
   --shade:#66757F; --deck:#31404C; --soft:#3A4954;
+  --brand:#8A1515; --brand-rgb:138,21,21;
 }
 :root[data-theme="light"] body{ background:var(--ink); }
 
@@ -110,7 +112,7 @@
   border-radius:2px; padding:0.34rem 0.6rem; cursor:pointer; white-space:nowrap;
   transition:color .2s var(--ease), border-color .2s var(--ease);
 }
-.themeBtn:hover{ color:var(--paper); border-color:var(--agent); }
+.themeBtn:hover{ color:var(--paper); border-color:var(--brand); }
 @media (max-width:520px){ .themeBtn{ display:none; } }
 *,*::before,*::after{ box-sizing:border-box; }
 html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; scroll-padding-top:4rem; }
@@ -140,7 +142,7 @@ a{ color:inherit; }
 }
 .bar__progress{
   position:absolute; left:0; bottom:-1px; height:1px; width:0%;
-  background:linear-gradient(90deg,var(--agent),var(--human));
+  background:linear-gradient(90deg,var(--agent),var(--brand));
   transition:width .12s linear;
 }
 .bar__in{
@@ -151,7 +153,7 @@ a{ color:inherit; }
   letter-spacing:0.14em; text-transform:uppercase;
 }
 .bar__mark{ color:var(--paper); letter-spacing:0.22em; font-weight:500; text-decoration:none; transition:color .2s var(--ease); }
-.bar__mark:hover{ color:var(--human); }
+.bar__mark:hover{ color:var(--brand); }
 .bar__nav{ margin-left:auto; display:flex; gap:1.3rem; }
 .bar__nav a{ color:var(--dim); text-decoration:none; transition:color .2s var(--ease); position:relative; }
 .bar__nav a::after{
@@ -541,7 +543,7 @@ a{ color:inherit; }
   border:1px solid var(--line); border-radius:2px;
   transition:border-color .2s var(--ease),color .2s var(--ease);
 }
-.pill:hover{ border-color:var(--human); color:var(--human); }
+.pill:hover{ border-color:var(--brand); color:var(--brand); }
 
 /* ── log ─────────────────────────────────── */
 .log{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
@@ -1563,9 +1565,10 @@ a{ color:inherit; }
   <div class="wrap foot__in">
     <a href="https://quarbby.github.io/">Home</a>
     <a href="https://quarbby.github.io/blog.html">Blog</a>
-    <a href="https://quarbby.github.io/resources.html">Talks &amp; resources</a>
+    <a href="https://quarbby.github.io/resources.html">Resources</a>
     <a href="https://quarbby.github.io/pub.html">Publications</a>
     <a href="https://quarbby.github.io/research.html">Research</a>
+    <a href="https://quarbby.github.io/contact.html">Contact</a>
     <a href="#top">Top</a>
     <span class="foot__note">The LAN Shop. Language · Agents · Networks </span>
   </div>
