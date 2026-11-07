@@ -1,16 +1,31 @@
 # Lynnette Hui Xian Ng
 
-> Personal site of Lynnette Hui Xian Ng (ORCID 0000-0002-2740-7818), covering
-> bot detection, coordinated behaviour, influence operations and multi-agent
-> social systems. She runs The LAN Shop (Language, Agents, Networks), her
-> research lab, at https://quarbby.github.io/lanshop/
+> Personal site of Lynnette Hui Xian Ng (ORCID 0000-0002-2740-7818), a
+> researcher in social media bots, social simulation, multi-agent social
+> systems, and coordinated behaviour / influence operations. She runs The LAN
+> Shop (Language, Agents, Networks), her research lab, at
+> https://quarbby.github.io/lanshop/
 
 Lynnette Hui Xian Ng is Deputy Head of the Information Programme Center at DSTA
 Singapore and holds a PhD in Societal Computing from Carnegie Mellon University,
-where she was advised by Kathleen M. Carley. Her work asks which accounts on a
-social platform are automated, what roles they play, how groups of accounts
-coordinate, and how such societies can be simulated and governed. She is the
-author of 50 publications between 2014 and 2026, listed in full below.
+where she was advised by Kathleen M. Carley. Her research sits across four
+connected areas:
+
+- **Social media bots** — detecting automated and human-automated hybrid
+  (cyborg) accounts, and classifying the roles they play.
+- **Coordination and influence operations** — telling coordinated,
+  synchronized behaviour apart from coincidence, and tracing how influence
+  campaigns and narratives move across platforms.
+- **Social simulation and multi-agent social systems** — building and
+  validating agent-based models of societies, including belief contagion and
+  LLM-driven personas, to ask whether a simulated society behaves like a real
+  one.
+- **Language, stance and discourse** — measuring opinion, stance and hate
+  speech in online text, and how reliably these can be measured across
+  datasets.
+
+She is the author of 50 publications between 2014 and 2026, listed in full
+below.
 
 ## Tools she built
 
@@ -27,12 +42,13 @@ author of 50 publications between 2014 and 2026, listed in full below.
 
 ## Research programmes
 
-- **Design Of The Agents** — what an agent is, how to detect one, and how
-  agents and humans influence each other.
-- **Simulation** — whether a simulated agent society behaves like a real one,
-  and how such simulations can be validated.
-- **Networks** — measuring one networked structure against another, and
-  telling coordination apart from coincidence.
+- **Design Of The Agents** — what a social media bot or agent is, how to
+  detect one, and how agents and humans influence each other.
+- **Social simulation and multi-agent social systems** — whether a simulated
+  agent society behaves like a real one, and how such simulations (belief
+  contagion, LLM-driven personas) can be validated.
+- **Coordination and networks** — measuring one networked structure against
+  another, and telling coordinated behaviour apart from coincidence.
 
 ## Book
 
